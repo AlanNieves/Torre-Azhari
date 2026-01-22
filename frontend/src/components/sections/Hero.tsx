@@ -15,26 +15,41 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
             className="text-xs font-semibold tracking-[0.18em] text-zinc-300"
           >
-            DESARROLLO INMOBILIARIO · EXPERIENCIA EDITORIAL
+            DESARROLLO INMOBILIARIO · ARQUITECTURA CONTEMPORÁNEA
           </motion.p>
 
+          {/* H1 SEO */}
           <motion.h1
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.05 }}
             className="mt-4 font-serif text-4xl leading-tight tracking-tight sm:text-5xl lg:text-6xl"
           >
-            Arquitectura contemporánea,
-            <span className="text-zinc-300"> presencia absoluta.</span>
+            Departamentos en Aguascalientes
+            <span className="text-zinc-300"> diseñados para vivir mejor.</span>
           </motion.h1>
 
+          {/* Subtítulo editorial */}
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg"
+          >
+            Torre Azhari es un desarrollo inmobiliario contemporáneo que combina
+            arquitectura, ubicación y una experiencia pensada para habitar con calma.
+          </motion.h2>
+
+          {/* Texto contextual SEO */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.12 }}
-            className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg"
+            transition={{ duration: 0.7, delay: 0.14 }}
+            className="mt-4 max-w-2xl text-sm leading-relaxed text-zinc-400"
           >
-            Torre Azhari es un activo de marca: ritmo visual, calma editorial y conversión sin fricción.
+            Ubicado en Aguascalientes, Torre Azhari ofrece departamentos
+            diseñados para quienes buscan construir un hogar, invertir con visión
+            o vivir en un entorno arquitectónico de alto nivel.
           </motion.p>
 
           <motion.div
@@ -71,7 +86,7 @@ export default function Hero() {
                 VISUAL / RENDER PRINCIPAL
               </p>
               <p className="mt-2 text-sm text-zinc-400">
-                Slot preparado para imagen optimizada (Next/Image) o video.
+                Espacio preparado para imagen o video optimizado con Next/Image.
               </p>
             </div>
           </motion.div>

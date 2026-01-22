@@ -4,8 +4,9 @@ import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Departamentos",
-  description: "Tipologías y unidades destacadas de Torre Azhari.",
+  title: "Departamentos en Aguascalientes | Torre Azhari",
+  description:
+    "Conoce las tipologías de departamentos de Torre Azhari en Aguascalientes. Espacios diseñados para vivir, invertir y construir un hogar con arquitectura contemporánea.",
   path: "/departamentos",
   ogImage: SITE.ogImage,
 });
@@ -14,12 +15,23 @@ export default function DepartamentosPage() {
   return (
     <main className="pt-10 sm:pt-14 lg:pt-16">
       <header className="max-w-3xl">
-        <p className="text-xs font-semibold tracking-[0.18em] text-zinc-300">DEPARTAMENTOS</p>
+        <p className="text-xs font-semibold tracking-[0.18em] text-zinc-300">
+          DEPARTAMENTOS
+        </p>
+
         <h1 className="mt-3 font-serif text-4xl tracking-tight sm:text-5xl">
-          Tipologías con intención
+          Departamentos en Aguascalientes
         </h1>
+
         <p className="mt-4 text-base leading-relaxed text-zinc-300">
-          Página preparada para tipologías, rangos, planos y módulos editoriales.
+          Tipologías de Torre Azhari pensadas para distintas formas de vivir,
+          invertir y habitar la ciudad con arquitectura contemporánea.
+        </p>
+
+        <p className="mt-6 max-w-2xl text-sm leading-relaxed text-zinc-400">
+          Ubicados en Aguascalientes, los departamentos de Torre Azhari ofrecen
+          espacios bien planeados que responden a estilos de vida actuales y a
+          una visión de largo plazo.
         </p>
       </header>
 
@@ -31,7 +43,8 @@ export default function DepartamentosPage() {
           >
             <h2 className="font-serif text-2xl tracking-tight">{t}</h2>
             <p className="mt-3 text-zinc-300">
-              Módulo listo para datos reales (m², recámaras, balcón, etc).
+              Módulo listo para datos reales como superficie, recámaras,
+              distribución y elementos arquitectónicos distintivos.
             </p>
           </div>
         ))}
