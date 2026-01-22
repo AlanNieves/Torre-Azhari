@@ -73,17 +73,27 @@ export default function Navbar() {
       className="sticky top-0 z-50 w-full border-b border-zinc-800/60 backdrop-blur-xl transition-all duration-300"
     >
       <nav className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-4 sm:px-6 lg:px-10">
-        {/* Logo */}
+        {/* 
+          Logo + Texto
+          
+          Estructura: Logo SVG + "Torre Azhari" (sin "PREMIUM")
+          Ubicación logo: /public/logos/TorreAzhariLogo.svg
+          
+          Nota: brightness-0 invert hace que el logo negro se vuelva blanco
+          para que sea visible en el fondo oscuro
+        */}
         <a
           href="#hero"
           onClick={(e) => handleClick(e, "#hero")}
-          className="group inline-flex items-baseline gap-2"
+          className="group inline-flex items-center gap-3"
         >
+          <img 
+            src="/logos/TorreAzhariLogo.svg" 
+            alt="Torre Azhari Logo"
+            className="h-8 w-auto brightness-0 invert transition-opacity duration-300 group-hover:opacity-80"
+          />
           <span className="font-serif text-xl tracking-tight transition-colors duration-300 group-hover:text-zinc-100">
             Torre Azhari
-          </span>
-          <span className="text-xs font-semibold tracking-[0.18em] text-zinc-400 transition-colors duration-300 group-hover:text-zinc-300">
-            PREMIUM
           </span>
         </a>
 

@@ -2,10 +2,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Waves, Dumbbell, Sunset, Briefcase, Gamepad2, ShieldCheck, ParkingSquare, Building2 } from "lucide-react";
 
 interface Amenity {
   id: string;
-  icon: string;
+  icon: React.ComponentType<{ className?: string }>;
   title: string;
   description: string;
 }
@@ -13,50 +14,50 @@ interface Amenity {
 const AMENITIES: Amenity[] = [
   {
     id: "pool",
-    icon: "🏊",
+    icon: Waves,
     title: "Alberca",
     description: "Alberca techada con área de asoleaderos y vistas panorámicas",
   },
   {
     id: "gym",
-    icon: "💪",
+    icon: Dumbbell,
     title: "Gimnasio",
     description: "Equipamiento de última generación disponible 24/7",
   },
   {
     id: "rooftop",
-    icon: "🌆",
+    icon: Sunset,
     title: "Roof Garden",
     description: "Terraza con área lounge, parrillas y vista de 360°",
   },
   {
     id: "cowork",
-    icon: "💼",
+    icon: Briefcase,
     title: "Co-working",
     description: "Espacios compartidos ideales para trabajo remoto",
   },
   {
     id: "kids",
-    icon: "🎮",
+    icon: Gamepad2,
     title: "Área Infantil",
     description: "Zona de juegos segura y equipada para los más pequeños",
   },
   {
     id: "security",
-    icon: "🔒",
+    icon: ShieldCheck,
     title: "Seguridad 24/7",
     description: "Control de acceso, cámaras y vigilancia permanente",
   },
   {
     id: "parking",
-    icon: "🅿️",
+    icon: ParkingSquare,
     title: "Estacionamiento",
     description: "Cajones techados con acceso controlado",
   },
   {
     id: "lobby",
-    icon: "🏢",
-    title: "Lobby Premium",
+    icon: Building2,
+    title: "Lobby",
     description: "Recepción de lujo con atención personalizada",
   },
 ];
@@ -93,8 +94,8 @@ function AmenityCard({ amenity }: { amenity: Amenity }) {
       className="group relative overflow-hidden rounded-3xl border border-zinc-800 bg-gradient-to-br from-zinc-900/40 to-zinc-950/60 p-6 shadow-lg transition-all duration-500 hover:border-zinc-700 hover:shadow-2xl hover:shadow-zinc-900/40"
     >
       {/* Icon */}
-      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-zinc-800 bg-zinc-950/80 text-3xl transition-all duration-300 group-hover:scale-110 group-hover:border-zinc-700">
-        {amenity.icon}
+      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-zinc-800 bg-zinc-950/80 transition-all duration-300 group-hover:scale-110 group-hover:border-zinc-700">
+        <amenity.icon className="h-7 w-7 text-zinc-400 transition-colors duration-300 group-hover:text-zinc-200" />
       </div>
 
       {/* Content */}

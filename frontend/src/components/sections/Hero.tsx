@@ -95,7 +95,6 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.96, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            style={{ y }}
             className="relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/20 shadow-2xl shadow-black/40"
           >
             <div className="aspect-[4/5] w-full bg-gradient-to-br from-zinc-900/60 via-zinc-950/40 to-zinc-900/80" />

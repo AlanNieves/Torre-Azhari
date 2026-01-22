@@ -87,18 +87,6 @@ function UnitCard({ unit }: { unit: Unit }) {
       variants={item}
       className="group relative overflow-hidden rounded-3xl border border-zinc-800 bg-gradient-to-br from-zinc-900/60 to-zinc-950/80 p-6 shadow-lg transition-all duration-500 hover:scale-[1.02] hover:border-zinc-700 hover:shadow-2xl hover:shadow-zinc-900/40"
     >
-      {/* Badge OFERTA */}
-      {unit.isOffer && (
-        <motion.div
-          initial={{ scale: 0, rotate: -12 }}
-          animate={{ scale: 1, rotate: -12 }}
-          transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
-          className="absolute right-4 top-4 rounded-full bg-amber-500 px-3 py-1 text-xs font-bold uppercase tracking-wider text-zinc-950 shadow-lg"
-        >
-          Oferta
-        </motion.div>
-      )}
-
       {/* Imagen placeholder */}
       <div className="relative mb-4 aspect-video overflow-hidden rounded-2xl bg-gradient-to-br from-zinc-800 to-zinc-900">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(250,250,250,0.05),transparent_50%)]" />

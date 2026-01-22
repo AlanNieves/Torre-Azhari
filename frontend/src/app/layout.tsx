@@ -41,7 +41,7 @@ export const metadata: Metadata = buildMetadata({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="es" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
       <head>
         {/* Preconnect para mejor performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -50,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Optimización de carga */}
         <meta name="format-detection" content="telephone=no" />
       </head>
-      <body className="min-h-dvh bg-zinc-950 text-zinc-100 antialiased">
+      <body className="min-h-dvh bg-zinc-950 text-zinc-100 antialiased" suppressHydrationWarning>
         {/* Background texture sutil - optimizado */}
         <div 
           className="pointer-events-none fixed inset-0 opacity-[0.06]" 
