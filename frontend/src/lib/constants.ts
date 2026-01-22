@@ -11,11 +11,11 @@ export const SITE = {
 } as const;
 
 export const NAV = [
-  { label: "Inicio", href: "/" },
-  { label: "Proyecto", href: "/proyecto" },
-  { label: "Departamentos", href: "/departamentos" },
-  { label: "Ubicación", href: "/ubicacion" },
-  { label: "Contacto", href: "/contacto" },
+  { label: "Inicio", href: "#hero" },
+  { label: "Proyecto", href: "#proyecto" },
+  { label: "Departamentos", href: "#departamentos" },
+  { label: "Ubicación", href: "#ubicacion" },
+  { label: "Contacto", href: "#contacto" },
 ] as const;
 
 export const API = {

@@ -2,7 +2,9 @@
 import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
 import Benefits from "@/components/sections/Benefits";
-import Gallery from "@/components/sections/Gallery";
+import Amenities from "@/components/sections/Amenities";
+import FeaturedUnits from "@/components/sections/FeaturedUnits";
+import Masterplan from "@/components/sections/Masterplan";
 import LocationSection from "@/components/sections/Location";
 import CTA from "@/components/sections/CTA";
 
@@ -24,11 +26,23 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <main>
-      <Hero />
-      <Benefits />
-      <Gallery />
-      <LocationSection />
-      <CTA />
+      <div id="hero">
+        <Hero />
+      </div>
+      <div id="proyecto">
+          <Benefits />
+        <Amenities />
+      </div>
+      <div id="departamentos">
+        <FeaturedUnits />
+        <Masterplan />
+      </div>
+      <div id="ubicacion">
+        <LocationSection />
+      </div>
+      <div id="contacto">
+        <CTA />
+      </div>
     </main>
   );
 }

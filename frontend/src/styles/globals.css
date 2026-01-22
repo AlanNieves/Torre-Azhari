@@ -1,17 +1,104 @@
 /* src/styles/globals.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   --radius: 24px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1;
 }
 
 * {
   -webkit-tap-highlight-color: transparent;
 }
+
+/* Optimización de animaciones y performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mejoras para carga y performance */
+img,
+video {
+  content-visibility: auto;
+}
+
+/* Scroll snap para mobile */
+@media (max-width: 768px) {
+  .snap-container {
+    scroll-snap-type: y proximity;
+    scroll-padding-top: 4rem;
+  }
+  
+  .snap-section {
+    scroll-snap-align: start;
+  }
+}
+
+/* Loading states optimizados */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(63, 63, 70, 0.2) 0%,
+    rgba(82, 82, 91, 0.3) 50%,
+    rgba(63, 63, 70, 0.2) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Custom scrollbar con estilo premium */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(24, 24, 27, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(113, 113, 122, 0.5);
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(161, 161, 170, 0.7);
+}
+
+/* Selection color premium */
+::selection {
+  background-color: rgba(244, 244, 245, 0.2);
+  color: rgb(244, 244, 245);
+}
+

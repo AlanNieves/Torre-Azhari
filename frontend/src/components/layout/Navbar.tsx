@@ -1,58 +1,136 @@
 // src/components/layout/Navbar.tsx
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { NAV } from "@/lib/constants";
+import { useEffect, useState } from "react";
 
 function cx(...classes: Array<string | false | undefined>) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
-  const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("#hero");
+  const { scrollY } = useScroll();
+  const backgroundColor = useTransform(
+    scrollY,
+    [0, 50],
+    ["rgba(9, 9, 11, 0.6)", "rgba(9, 9, 11, 0.85)"]
+  );
+  const borderOpacity = useTransform(scrollY, [0, 50], [0.6, 0.8]);
+
+  useEffect(() => {
+    const unsubscribe = scrollY.onChange((latest) => {
+      setIsScrolled(latest > 20);
+    });
+    return () => unsubscribe();
+  }, [scrollY]);
+
+  // Detectar sección activa basada en scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["#hero", "#proyecto", "#departamentos", "#ubicacion", "#contacto"];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.querySelector(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element as HTMLElement;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      const offset = 80; // Navbar height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
-    <header className="sticky top-0 z-50 -mx-4 border-b border-zinc-800/60 bg-zinc-950/60 px-4 backdrop-blur sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10">
-      <nav className="mx-auto flex h-16 max-w-[1400px] items-center justify-between">
-        <Link href="/" className="group inline-flex items-baseline gap-2">
-          <span className="font-serif text-xl tracking-tight">Torre Azhari</span>
-          <span className="text-xs font-semibold tracking-[0.18em] text-zinc-400">
+    <motion.header
+      style={{
+        backgroundColor,
+      }}
+      className="sticky top-0 z-50 w-full border-b border-zinc-800/60 backdrop-blur-xl transition-all duration-300"
+    >
+      <nav className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-4 sm:px-6 lg:px-10">
+        {/* Logo */}
+        <a
+          href="#hero"
+          onClick={(e) => handleClick(e, "#hero")}
+          className="group inline-flex items-baseline gap-2"
+        >
+          <span className="font-serif text-xl tracking-tight transition-colors duration-300 group-hover:text-zinc-100">
+            Torre Azhari
+          </span>
+          <span className="text-xs font-semibold tracking-[0.18em] text-zinc-400 transition-colors duration-300 group-hover:text-zinc-300">
             PREMIUM
           </span>
-        </Link>
+        </a>
 
+        {/* Desktop Navigation */}
         <div className="hidden items-center gap-1 md:flex">
-          {NAV.map((item) => {
-            const active =
-              item.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(item.href);
+          {NAV.slice(0, -1).map((item) => {
+            const active = activeSection === item.href;
 
             return (
-              <Link
+              <a
                 key={item.href}
                 href={item.href}
+                onClick={(e) => handleClick(e, item.href)}
                 className={cx(
-                  "rounded-full px-4 py-2 text-sm transition",
+                  "rounded-full px-4 py-2 text-sm transition-all duration-300",
                   active
-                    ? "bg-zinc-100 text-zinc-950"
-                    : "text-zinc-300 hover:bg-zinc-900 hover:text-zinc-100"
+                    ? "bg-zinc-100 text-zinc-950 shadow-lg shadow-zinc-100/10"
+                    : "text-zinc-300 hover:bg-zinc-900/80 hover:text-zinc-100"
                 )}
               >
                 {item.label}
-              </Link>
+              </a>
             );
           })}
         </div>
 
-        <Link
+        {/* CTA Button */}
+        <a
           href={NAV[NAV.length - 1].href}
-          className="rounded-full border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-100 transition hover:bg-zinc-900"
+          onClick={(e) => handleClick(e, NAV[NAV.length - 1].href)}
+          className={cx(
+            "rounded-full border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-100 transition-all duration-300 hover:scale-105 hover:border-zinc-600 hover:bg-zinc-900 hover:shadow-lg active:scale-95",
+            isScrolled && "bg-zinc-900/60"
+          )}
         >
           {NAV[NAV.length - 1].label}
-        </Link>
+        </a>
       </nav>
-    </header>
+
+      {/* Mobile Menu Indicator */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: isScrolled ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        style={{ borderColor: `rgba(113, 113, 122, ${borderOpacity})` }}
+        className="absolute bottom-0 left-0 right-0 h-px origin-left bg-gradient-to-r from-transparent via-zinc-700 to-transparent"
+      />
+    </motion.header>
   );
 }
