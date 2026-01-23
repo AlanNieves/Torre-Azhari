@@ -1,17 +1,53 @@
-const mongoose = require('mongoose');             // Mongoose para definir schema/model
+const mongoose = require("mongoose");
 
-const LeadSchema = new mongoose.Schema(           // Crea el esquema de Lead
+const LeadSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true, maxlength: 120 }, // Nombre obligatorio, limita tamaño
-    email: { type: String, required: true, lowercase: true, index: true }, // Email obligatorio, normaliza y indexa
-    phone: { type: String, required: true, maxlength: 30 }, // Teléfono obligatorio
-    interest: { type: String, default: '' },      // Interés opcional (inversión/vivir/etc)
-    source: { type: String, default: 'web' },     // Fuente del lead (web, ig, ads)
-    contacted: { type: Boolean, default: false }, // Ventas marcó si ya lo contactaron
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 120,
+    },
+
+    email: {
+      type: String,
+      required: true,
+      lowercase: true,
+      index: true,
+    },
+
+    phone: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 30,
+    },
+
+    interest: {
+      type: String,
+      default: "",
+      maxlength: 120,
+    },
+
+    source: {
+      type: String,
+      default: "web",
+      index: true,
+    },
+
+    contacted: {
+      type: Boolean,
+      default: false,
+      index: true,
+    },
   },
-  { timestamps: true }                            // Crea createdAt/updatedAt automáticamente
+  {
+    timestamps: true,
+  }
 );
 
-LeadSchema.index({ createdAt: -1 });              // Índice para consultas por fecha (últimos primero)
+// Índices útiles (ventas + auditoría)
+LeadSchema.index({ createdAt: -1 });
+LeadSchema.index({ source: 1, createdAt: -1 });
 
-module.exports = mongoose.model('Lead', LeadSchema); // Exporta el modelo para usarlo en services
+module.exports = mongoose.model("Lead", LeadSchema);

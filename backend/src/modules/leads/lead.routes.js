@@ -1,8 +1,12 @@
-const express = require('express');               // Express para crear router
-const { registerLead } = require('./lead.controller'); // Importa controller
+const express = require("express");
+const { validateBody } = require("../../middlewares/validateBody");
+const { LeadCreateSchema } = require("./lead.schema");
+const { registerLead } = require("./lead.controller");
 
-const router = express.Router();                  // Router aislado para /leads
+const router = express.Router();
 
-router.post('/', registerLead);                   // POST /api/leads → registra lead
 
-module.exports = router;                          // Exporta router para montarlo en routes.js
+
+router.post("/", validateBody(LeadCreateSchema), registerLead);
+
+module.exports = router;
