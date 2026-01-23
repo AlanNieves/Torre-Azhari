@@ -2,8 +2,8 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -12,108 +12,120 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.3]);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  const splitText = (text: string) => {
+    return text.split("").map((char, i) => (
+      <motion.span
+        key={i}
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{
+          duration: 0.8,
+          delay: i * 0.02,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="inline-block"
+      >
+        {char === " " ? "\u00A0" : char}
+      </motion.span>
+    ));
+  };
 
   return (
-    <section ref={ref} className="relative pt-10 sm:pt-14 lg:pt-16">
-      {/* Overlay gradient para mejor contraste */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-zinc-950/40" />
-      
-      <div className="relative grid gap-10 lg:grid-cols-12 lg:gap-12">
-        <motion.div 
-          className="lg:col-span-7"
-          style={{ opacity }}
+    <section ref={ref} className="relative h-screen w-full overflow-hidden bg-[#F5F1E8]">
+      {/* Background with Parallax */}
+      <motion.div 
+        className="absolute inset-0 bg-gradient-to-br from-[#E8E2D5] via-[#F5F1E8] to-[#EBE6DD]"
+        style={{ scale }}
+      >
+        {/* Subtle texture overlay */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: 'radial-gradient(circle at 2px 2px, #2A2520 1px, transparent 0)',
+          backgroundSize: '40px 40px'
+        }} />
+        
+        <div className="absolute inset-0 bg-gradient-to-b from-[#2A2520]/10 via-transparent to-[#F5F1E8]/60" />
+        
+        {/* Parallax Layers */}
+        <motion.div
+          className="absolute inset-0 bg-[#6B7456]/5"
+          style={{
+            x: mousePosition.x / 50,
+            y: mousePosition.y / 50,
+          }}
+        />
+      </motion.div>
+
+      {/* Content */}
+      <motion.div 
+        className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center"
+        style={{ y: textY, opacity }}
+      >
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="mb-6 text-xs font-medium tracking-[0.3em] text-[#5C564F] sm:text-sm"
         >
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-xs font-semibold tracking-[0.18em] text-zinc-300"
-          >
-            DESARROLLO INMOBILIARIO · ARQUITECTURA CONTEMPORÁNEA
-          </motion.p>
+          AGUASCALIENTES · 2026
+        </motion.p>
 
-          {/* H1 SEO */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-4 font-serif text-4xl font-light leading-[1.15] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
-          >
-            Departamentos en Aguascalientes
-            <span className="text-zinc-300"> diseñados para vivir mejor.</span>
-          </motion.h1>
+        {/* Título dramático con animación por caracteres */}
+        <h1 className="overflow-hidden font-serif text-[11vw] font-light leading-[0.9] tracking-tight text-[#2A2520] sm:text-[10vw] lg:text-[8vw]">
+          <div className="mb-4">{splitText("Torre")}</div>
+          <div>{splitText("Azhari")}</div>
+        </h1>
 
-          {/* Subtítulo editorial */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg"
-          >
-            Torre Azhari es un desarrollo inmobiliario contemporáneo que combina
-            arquitectura, ubicación y una experiencia pensada para habitar con calma.
-          </motion.h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.5 }}
+          className="mt-8 max-w-2xl text-base leading-relaxed text-[#5C564F] sm:text-lg lg:text-xl"
+        >
+          Arquitectura contemporánea que redefine
+          <br />
+          el habitar en la ciudad
+        </motion.h2>
 
-          {/* Texto contextual SEO */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-4 max-w-2xl text-sm leading-relaxed text-zinc-400"
-          >
-            Ubicado en Aguascalientes, Torre Azhari ofrece departamentos
-            diseñados para quienes buscan construir un hogar, invertir con visión
-            o vivir en un entorno arquitectónico de alto nivel.
-          </motion.p>
-
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 2 }}
+          className="absolute bottom-12 flex flex-col items-center gap-2"
+        >
+          <p className="text-xs tracking-[0.2em] text-[#5C564F]">DESCUBRIR</p>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-8 flex flex-wrap items-center gap-3"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <Link
-              href="/contacto"
-              className="group relative overflow-hidden rounded-full bg-zinc-100 px-6 py-3 text-sm font-medium text-zinc-950 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-zinc-100/20 active:scale-[0.98]"
-            >
-              <span className="relative z-10">Solicitar información</span>
-              <div className="absolute inset-0 -z-0 bg-zinc-200 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            </Link>
-            <Link
-              href="/proyecto"
-              className="group rounded-full border border-zinc-700 px-6 py-3 text-sm font-medium text-zinc-100 transition-all duration-300 hover:border-zinc-600 hover:bg-zinc-900/80 hover:shadow-md active:scale-[0.98]"
-            >
-              Ver el proyecto
-            </Link>
+            <ChevronDown className="h-6 w-6 text-[#6B7456]" />
           </motion.div>
         </motion.div>
 
-        <div className="lg:col-span-5">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/20 shadow-2xl shadow-black/40"
-          >
-            <div className="aspect-[4/5] w-full bg-gradient-to-br from-zinc-900/60 via-zinc-950/40 to-zinc-900/80" />
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/60 to-transparent p-6"
-            >
-              <p className="text-xs font-semibold tracking-[0.18em] text-zinc-300">
-                VISUAL / RENDER PRINCIPAL
-              </p>
-              <p className="mt-2 text-sm text-zinc-400">
-                Espacio preparado para imagen o video optimizado con Next/Image.
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
+        {/* Decorative Elements */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1.2, delay: 1.8, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute bottom-0 left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-[#6B7456]/30 to-transparent"
+        />
+      </motion.div>
+
+      {/* Gradient Overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#F5F1E8]/40" />
     </section>
   );
 }

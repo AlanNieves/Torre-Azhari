@@ -37,124 +37,133 @@ const SOCIAL_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="mt-16 border-t border-zinc-800/60 py-10 sm:mt-20 lg:mt-24">
-      <div className="grid gap-8 lg:grid-cols-12">
-        {/* Brand */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="lg:col-span-5"
-        >
-          <p className="font-serif text-2xl tracking-tight">{SITE.name}</p>
-          <p className="mt-3 max-w-md text-sm leading-relaxed text-zinc-400">
-            {SITE.description}
-          </p>
+    <footer className="bg-[#2A2520] py-20 text-white sm:py-24">
+      <div className="mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16">
+        <div className="grid gap-16 lg:grid-cols-12">
+          {/* Brand */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5"
+          >
+            <div className="flex items-center gap-4">
+              <img 
+                src="/logos/TorreAzhariLogo.svg" 
+                alt="Torre Azhari Logo"
+                className="h-12 w-auto brightness-0 invert opacity-90"
+              />
+              <p className="font-serif text-4xl font-light tracking-tight">{SITE.name}</p>
+            </div>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-white/70">
+              {SITE.description}
+            </p>
 
-          {/* Social Links */}
-          <div className="mt-6 flex items-center gap-3">
-            {SOCIAL_LINKS.map((social, index) => (
-              <motion.a
-                key={social.name}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900/40 text-zinc-400 transition-all duration-300 hover:border-zinc-600 hover:bg-zinc-800/60 hover:text-zinc-100"
-                aria-label={social.name}
-              >
-                {social.icon}
-              </motion.a>
-            ))}
-          </div>
-        </motion.div>
+            {/* Social Links */}
+            <div className="mt-8 flex items-center gap-4">
+              {SOCIAL_LINKS.map((social, index) => (
+                <motion.a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-white/70 transition-all duration-300 hover:border-[#6B7456] hover:bg-[#6B7456] hover:text-white"
+                  aria-label={social.name}
+                >
+                  {social.icon}
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
 
-        {/* Links */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="lg:col-span-7"
-        >
-          <div className="grid gap-6 sm:grid-cols-2">
-            {/* Navigation */}
-            <div>
-              <p className="text-xs font-semibold tracking-[0.18em] text-zinc-300">
-                NAVEGACIÓN
-              </p>
-              <ul className="mt-3 space-y-2">
-                {NAV.map((item) => (
-                  <li key={item.href}>
-                    <Link 
-                      className="text-sm text-zinc-400 transition-colors duration-300 hover:text-zinc-100" 
-                      href={item.href}
-                    >
-                      {item.label}
-                    </Link>
+          {/* Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-7"
+          >
+            <div className="grid gap-12 sm:grid-cols-2">
+              {/* Navigation */}
+              <div>
+                <p className="text-xs font-medium tracking-[0.3em] text-white/60">
+                  NAVEGACIÓN
+                </p>
+                <ul className="mt-4 space-y-3">
+                  {NAV.map((item) => (
+                    <li key={item.href}>
+                      <Link 
+                        className="text-base text-white/70 transition-colors duration-300 hover:text-white" 
+                        href={item.href}
+                      >
+                        {item.label}
+                      </Link>
                   </li>
                 ))}
               </ul>
-            </div>
+              </div>
 
-            {/* Contact */}
-            <div>
-              <p className="text-xs font-semibold tracking-[0.18em] text-zinc-300">
-                CONTACTO
-              </p>
-              <ul className="mt-3 space-y-2 text-sm text-zinc-400">
-                <li className="flex items-center gap-2">
-                  <svg className="h-4 w-4 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <span>{SITE.city}</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <svg className="h-4 w-4 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  <a href={`mailto:${SITE.email}`} className="hover:text-zinc-100">{SITE.email}</a>
-                </li>
-                <li className="flex items-center gap-2">
-                  <svg className="h-4 w-4 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  <a href={`tel:${SITE.phone}`} className="hover:text-zinc-100">{SITE.phone}</a>
-                </li>
-              </ul>
+              {/* Contact */}
+              <div>
+                <p className="text-xs font-medium tracking-[0.3em] text-white/60">
+                  CONTACTO
+                </p>
+                <ul className="mt-4 space-y-3 text-sm text-white/70">
+                  <li className="flex items-start gap-3">
+                    <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>{SITE.city}</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <svg className="h-5 w-5 flex-shrink-0 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <a href={`mailto:${SITE.email}`} className="hover:text-white transition-colors">{SITE.email}</a>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <svg className="h-5 w-5 flex-shrink-0 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <a href={`tel:${SITE.phone}`} className="hover:text-white transition-colors">{SITE.phone}</a>
+                  </li>
+                </ul>
+              </div>
             </div>
+          </motion.div>
+        </div>
+
+        {/* Bottom */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row"
+        >
+          <p className="text-xs text-white/50">
+            © {new Date().getFullYear()} {SITE.name}. Todos los derechos reservados.
+          </p>
+          <div className="flex gap-4 text-xs text-white/50">
+            <Link href="/aviso-privacidad" className="hover:text-white/80 transition-colors">
+              Aviso de Privacidad
+            </Link>
+            <span>·</span>
+            <Link href="/terminos" className="hover:text-white/80 transition-colors">
+              Términos y Condiciones
+            </Link>
           </div>
         </motion.div>
       </div>
-
-      {/* Bottom */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-        className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-zinc-800/40 pt-8 sm:flex-row"
-      >
-        <p className="text-xs text-zinc-500">
-          © {new Date().getFullYear()} {SITE.name}. Todos los derechos reservados.
-        </p>
-        <div className="flex gap-4 text-xs text-zinc-500">
-          <Link href="/aviso-privacidad" className="hover:text-zinc-300">
-            Aviso de Privacidad
-          </Link>
-          <span>·</span>
-          <Link href="/terminos" className="hover:text-zinc-300">
-            Términos y Condiciones
-          </Link>
-        </div>
-      </motion.div>
     </footer>
   );
 }

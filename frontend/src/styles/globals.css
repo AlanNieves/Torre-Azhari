@@ -3,6 +3,12 @@
 
 :root {
   --radius: 24px;
+  --bg-primary: #F5F1E8;
+  --bg-secondary: #E8E2D5;
+  --text-primary: #2A2520;
+  --text-secondary: #5C564F;
+  --accent-olive: #6B7456;
+  --accent-terracotta: #B85C38;
 }
 
 html {
@@ -14,6 +20,8 @@ body {
   height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 body {
@@ -41,6 +49,61 @@ body {
 img,
 video {
   content-visibility: auto;
+}
+
+/* Cursor personalizado */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-olive);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.2s ease;
+}
+
+.cursor-outline {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--accent-olive);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  mix-blend-mode: difference;
+  transition: all 0.15s ease;
+}
+
+/* Magnetic buttons */
+.magnetic-btn {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Split text animations */
+.split-char {
+  display: inline-block;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+/* Horizontal scroll container */
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.horizontal-scroll > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
 }
 
 /* Scroll snap para mobile */

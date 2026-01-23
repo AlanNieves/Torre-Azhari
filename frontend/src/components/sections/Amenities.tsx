@@ -62,129 +62,95 @@ const AMENITIES: Amenity[] = [
   },
 ];
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
-};
-
-function AmenityCard({ amenity }: { amenity: Amenity }) {
+function AmenityCard({ amenity, index }: { amenity: Amenity; index: number }) {
   return (
     <motion.div
-      variants={item}
-      whileHover={{ y: -8, scale: 1.02 }}
-      transition={{ duration: 0.3 }}
-      className="group relative overflow-hidden rounded-3xl border border-zinc-800 bg-gradient-to-br from-zinc-900/40 to-zinc-950/60 p-6 shadow-lg transition-all duration-500 hover:border-zinc-700 hover:shadow-2xl hover:shadow-zinc-900/40"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay: index * 0.1 }}
+      whileHover={{ scale: 1.03 }}
+      className="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-lg transition-all duration-500 hover:shadow-2xl sm:p-10"
     >
+      {/* Background decoration */}
+      <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-gradient-to-br from-[#6B7456]/10 to-transparent blur-2xl transition-opacity duration-500 group-hover:opacity-50" />
+      
       {/* Icon */}
-      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-zinc-800 bg-zinc-950/80 transition-all duration-300 group-hover:scale-110 group-hover:border-zinc-700">
-        <amenity.icon className="h-7 w-7 text-zinc-400 transition-colors duration-300 group-hover:text-zinc-200" />
+      <div className="relative mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-[#F5F1E8] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#6B7456]/10">
+        <amenity.icon className="h-9 w-9 text-[#6B7456] transition-colors duration-300 group-hover:text-[#B85C38]" />
       </div>
 
-      {/* Content */}
-      <h3 className="font-serif text-xl tracking-tight transition-colors duration-300 group-hover:text-zinc-100">
+      {/* Title */}
+      <h3 className="mb-3 font-serif text-2xl font-light tracking-tight text-[#2A2520] sm:text-3xl">
         {amenity.title}
       </h3>
-      <p className="mt-2 text-sm leading-relaxed text-zinc-400 transition-colors duration-300 group-hover:text-zinc-300">
+
+      {/* Description */}
+      <p className="text-sm leading-relaxed text-[#5C564F] sm:text-base">
         {amenity.description}
       </p>
 
-      {/* Hover effect */}
-      <div className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-100/5 via-transparent to-transparent" />
-      </div>
+      {/* Hover line */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        whileHover={{ scaleX: 1 }}
+        transition={{ duration: 0.5 }}
+        className="absolute bottom-0 left-0 h-[2px] w-full origin-left bg-gradient-to-r from-[#6B7456] to-[#B85C38]"
+      />
     </motion.div>
   );
 }
 
 export default function Amenities() {
   return (
-    <section className="mt-16 sm:mt-20 lg:mt-24">
-      {/* Header */}
-      <div className="text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-xs font-semibold tracking-[0.18em] text-zinc-300"
-        >
-          AMENIDADES
-        </motion.p>
+    <section className="bg-[#E8E2D5] py-20 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16">
+        {/* Header */}
+        <div className="mb-20">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-xs font-medium tracking-[0.3em] text-[#5C564F]"
+          >
+            AMENIDADES
+          </motion.p>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl lg:text-5xl"
-        >
-          Diseñado para tu bienestar
-        </motion.h2>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="mt-6 font-serif text-5xl font-light leading-[1.1] tracking-tight text-[#2A2520] sm:text-6xl lg:text-7xl"
+          >
+            Espacios que
+            <br />
+            <span className="text-[#6B7456]">enriquecen tu día</span>
+          </motion.h2>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-zinc-300"
-        >
-          Espacios comunes pensados para elevar tu calidad de vida, 
-          combinando funcionalidad, confort y exclusividad.
-        </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="mt-6 max-w-2xl text-lg leading-relaxed text-[#5C564F]"
+          >
+            Cada amenidad ha sido diseñada pensando en tu bienestar,
+            combinando funcionalidad con la experiencia sensorial que mereces.
+          </motion.p>
+        </div>
+
+        {/* Grid de amenidades */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {AMENITIES.map((amenity, index) => (
+            <AmenityCard key={amenity.id} amenity={amenity} index={index} />
+          ))}
+        </div>
       </div>
 
-      {/* Grid de amenidades */}
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-100px" }}
-        className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
-      >
-        {AMENITIES.map((amenity) => (
-          <AmenityCard key={amenity.id} amenity={amenity} />
-        ))}
-      </motion.div>
-
-      {/* CTA adicional */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, delay: 0.5 }}
-        className="mt-12 text-center"
-      >
-        <p className="text-sm text-zinc-400">
-          ¿Quieres conocer más sobre nuestras instalaciones?
-        </p>
-        <a
-          href="/proyecto"
-          className="mt-4 inline-flex items-center gap-2 rounded-full border border-zinc-700 px-6 py-3 text-sm font-medium text-zinc-100 transition-all duration-300 hover:scale-105 hover:border-zinc-600 hover:bg-zinc-900/80 active:scale-95"
-        >
-          <span>Ver proyecto completo</span>
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-      </motion.div>
+      {/* Background decoration */}
+      <div className="pointer-events-none absolute left-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-gradient-to-r from-[#B85C38]/5 to-transparent blur-3xl" />
     </section>
   );
 }

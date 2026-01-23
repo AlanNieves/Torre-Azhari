@@ -6,6 +6,11 @@ const nextConfig: NextConfig = {
   
   // Compresión y optimización
   compress: true,
+
+  // Prevenir errores de hidratación por extensiones del navegador
+  experimental: {
+    optimizeCss: true,
+  },
   
   // Optimización de imágenes
   images: {

@@ -1,8 +1,9 @@
 // src/components/sections/FeaturedUnits.tsx
 "use client";
 
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Unit {
   id: string;
@@ -10,216 +11,243 @@ interface Unit {
   type: string;
   area: string;
   price: number;
-  oldPrice?: number;
-  isOffer?: boolean;
+  bedrooms: number;
+  bathrooms: number;
   available: number;
 }
 
 const UNITS: Unit[] = [
   {
     id: "u1",
-    name: "Departamento 301",
-    type: "2 habitaciones · 2 baños",
-    area: "95 m²",
+    name: "Modelo A",
+    type: "Departamento Contemporáneo",
+    area: "95",
     price: 3850000,
-    oldPrice: 4200000,
-    isOffer: true,
-    available: 2,
+    bedrooms: 2,
+    bathrooms: 2,
+    available: 5,
   },
   {
     id: "u2",
-    name: "Departamento 502",
-    type: "3 habitaciones · 2.5 baños",
-    area: "135 m²",
+    name: "Modelo B",
+    type: "Departamento Plus",
+    area: "135",
     price: 5500000,
+    bedrooms: 3,
+    bathrooms: 2,
     available: 3,
   },
   {
     id: "u3",
-    name: "Penthouse 801",
-    type: "4 habitaciones · 3 baños",
-    area: "180 m²",
+    name: "Modelo C",
+    type: "Penthouse Premium",
+    area: "180",
     price: 8900000,
+    bedrooms: 4,
+    bathrooms: 3,
     available: 1,
   },
 ];
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 30 },
-  show: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
-};
-
-function UnitCard({ unit }: { unit: Unit }) {
-  const [quantity, setQuantity] = useState(1);
-
-  const handleIncrement = () => {
-    if (quantity < unit.available) {
-      setQuantity(quantity + 1);
-    }
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-
+function UnitCard({ unit, index }: { unit: Unit; index: number }) {
   return (
     <motion.div
-      variants={item}
-      className="group relative overflow-hidden rounded-3xl border border-zinc-800 bg-gradient-to-br from-zinc-900/60 to-zinc-950/80 p-6 shadow-lg transition-all duration-500 hover:scale-[1.02] hover:border-zinc-700 hover:shadow-2xl hover:shadow-zinc-900/40"
+      initial={{ opacity: 0, x: 100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay: index * 0.15 }}
+      className="group min-w-[90vw] sm:min-w-[500px] lg:min-w-[600px]"
     >
-      {/* Imagen placeholder */}
-      <div className="relative mb-4 aspect-video overflow-hidden rounded-2xl bg-gradient-to-br from-zinc-800 to-zinc-900">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(250,250,250,0.05),transparent_50%)]" />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-zinc-950/80 to-transparent p-4">
-          <p className="text-xs font-semibold tracking-[0.16em] text-zinc-300">
-            VISTA RENDER
-          </p>
-        </div>
-      </div>
-
-      {/* Info */}
-      <div>
-        <h3 className="font-serif text-xl tracking-tight">{unit.name}</h3>
-        <p className="mt-1 text-sm text-zinc-400">{unit.type}</p>
-        <p className="mt-1 text-sm font-medium text-zinc-300">{unit.area}</p>
-
-        {/* Precio */}
-        <div className="mt-4 flex items-baseline gap-2">
-          {unit.oldPrice && (
-            <motion.span
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-sm text-zinc-500 line-through"
-            >
-              ${unit.oldPrice.toLocaleString()}
-            </motion.span>
-          )}
-          <motion.span
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: unit.oldPrice ? 0.4 : 0.2 }}
-            className="font-serif text-2xl tracking-tight"
-          >
-            ${unit.price.toLocaleString()}
-          </motion.span>
-          <span className="text-sm text-zinc-400">MXN</span>
-        </div>
-
-        {/* Disponibilidad */}
-        <p className="mt-2 text-xs text-zinc-400">
-          {unit.available} {unit.available === 1 ? "unidad disponible" : "unidades disponibles"}
-        </p>
-
-        {/* Control de cantidad */}
-        <div className="mt-6 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handleDecrement}
-              disabled={quantity <= 1}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700 text-zinc-300 transition-all duration-300 hover:border-zinc-600 hover:bg-zinc-800 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent"
-              aria-label="Disminuir cantidad"
-            >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
-              </svg>
-            </button>
-            
-            <span className="w-8 text-center font-medium">{quantity}</span>
-            
-            <button
-              onClick={handleIncrement}
-              disabled={quantity >= unit.available}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700 text-zinc-300 transition-all duration-300 hover:border-zinc-600 hover:bg-zinc-800 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent"
-              aria-label="Aumentar cantidad"
-            >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-              </svg>
-            </button>
+      <div className="relative h-full overflow-hidden rounded-3xl bg-white shadow-2xl transition-all duration-700 hover:shadow-[0_30px_60px_-15px_rgba(107,116,86,0.3)]">
+        {/* Image Area */}
+        <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-[#E8E2D5] to-[#D5CFC0]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(107,116,86,0.1),transparent_70%)]" />
+          
+          {/* Decorative elements */}
+          <div className="absolute right-8 top-8 flex flex-col items-end gap-2">
+            <div className="rounded-full bg-white/90 px-4 py-2 text-xs font-medium tracking-[0.2em] text-[#2A2520]">
+              {unit.available} DISPONIBLES
+            </div>
           </div>
 
-          <button className="rounded-full bg-zinc-100 px-5 py-2 text-sm font-medium text-zinc-950 transition-all duration-300 hover:scale-105 hover:bg-zinc-200 hover:shadow-lg active:scale-95">
-            Reservar
-          </button>
+          {/* Placeholder for unit image */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <p className="font-serif text-6xl font-light text-[#6B7456]/20">
+              {unit.name}
+            </p>
+          </div>
         </div>
-      </div>
 
-      {/* Efecto hover glow */}
-      <div className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-100/5 via-transparent to-transparent" />
+        {/* Content */}
+        <div className="p-8 sm:p-10">
+          <div className="mb-6">
+            <p className="text-xs font-medium tracking-[0.3em] text-[#5C564F]">
+              {unit.type}
+            </p>
+            <h3 className="mt-2 font-serif text-4xl font-light tracking-tight text-[#2A2520] sm:text-5xl">
+              {unit.name}
+            </h3>
+          </div>
+
+          {/* Specs Grid */}
+          <div className="mb-8 grid grid-cols-3 gap-6 border-y border-[#E8E2D5] py-6">
+            <div>
+              <p className="text-xs tracking-[0.2em] text-[#5C564F]">ÁREA</p>
+              <p className="mt-1 font-serif text-2xl font-light text-[#2A2520]">
+                {unit.area}<span className="text-base">m²</span>
+              </p>
+            </div>
+            <div>
+              <p className="text-xs tracking-[0.2em] text-[#5C564F]">RECÁMARAS</p>
+              <p className="mt-1 font-serif text-2xl font-light text-[#2A2520]">
+                {unit.bedrooms}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs tracking-[0.2em] text-[#5C564F]">BAÑOS</p>
+              <p className="mt-1 font-serif text-2xl font-light text-[#2A2520]">
+                {unit.bathrooms}
+              </p>
+            </div>
+          </div>
+
+          {/* Price */}
+          <div className="mb-6">
+            <p className="text-xs tracking-[0.2em] text-[#5C564F]">DESDE</p>
+            <div className="mt-1 flex items-baseline gap-2">
+              <span className="font-serif text-4xl font-light tracking-tight text-[#2A2520]">
+                ${(unit.price / 1000000).toFixed(2)}
+              </span>
+              <span className="text-lg text-[#5C564F]">MDP</span>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="w-full rounded-full bg-[#6B7456] py-4 text-center text-sm font-medium tracking-[0.1em] text-white transition-all duration-300 hover:bg-[#B85C38]"
+          >
+            SOLICITAR INFORMACIÓN
+          </motion.button>
+        </div>
+
+        {/* Decorative line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.5 + index * 0.15 }}
+          className="absolute bottom-0 left-0 h-1 w-full origin-left bg-gradient-to-r from-[#6B7456] via-[#B85C38] to-[#6B7456]"
+        />
       </div>
     </motion.div>
   );
 }
 
 export default function FeaturedUnits() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 650;
+      const newScrollLeft =
+        scrollContainerRef.current.scrollLeft +
+        (direction === "left" ? -scrollAmount : scrollAmount);
+      
+      scrollContainerRef.current.scrollTo({
+        left: newScrollLeft,
+        behavior: "smooth",
+      });
+
+      // Update button states
+      setTimeout(() => {
+        if (scrollContainerRef.current) {
+          const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+          setCanScrollLeft(scrollLeft > 0);
+          setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+        }
+      }, 300);
+    }
+  };
+
   return (
-    <section className="mt-16 sm:mt-20 lg:mt-24">
-      <div className="text-center">
+    <section className="relative overflow-hidden bg-[#F5F1E8] py-20 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16">
+        {/* Header */}
+        <div className="mb-16 flex items-end justify-between">
+          <div className="max-w-2xl">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-xs font-medium tracking-[0.3em] text-[#5C564F]"
+            >
+              MODELOS
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="mt-6 font-serif text-5xl font-light leading-[1.1] tracking-tight text-[#2A2520] sm:text-6xl lg:text-7xl"
+            >
+              Encuentra tu
+              <br />
+              <span className="text-[#6B7456]">espacio ideal</span>
+            </motion.h2>
+          </div>
+
+          {/* Navigation Controls */}
+          <div className="hidden gap-3 lg:flex">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => scroll("left")}
+              disabled={!canScrollLeft}
+              className="flex h-14 w-14 items-center justify-center rounded-full border border-[#2A2520]/20 bg-white transition-all duration-300 hover:border-[#6B7456] hover:bg-[#6B7456] hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => scroll("right")}
+              disabled={!canScrollRight}
+              className="flex h-14 w-14 items-center justify-center rounded-full border border-[#2A2520]/20 bg-white transition-all duration-300 hover:border-[#6B7456] hover:bg-[#6B7456] hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </motion.button>
+          </div>
+        </div>
+
+        {/* Horizontal Scroll Container */}
+        <div
+          ref={scrollContainerRef}
+          className="horizontal-scroll flex gap-8 overflow-x-auto pb-4"
+        >
+          {UNITS.map((unit, i) => (
+            <UnitCard key={unit.id} unit={unit} index={i} />
+          ))}
+        </div>
+
+        {/* Mobile scroll hint */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-xs font-semibold tracking-[0.18em] text-zinc-300"
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-8 text-center text-sm tracking-[0.2em] text-[#5C564F] lg:hidden"
         >
-          UNIDADES DESTACADAS
-        </motion.p>
-        
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl lg:text-5xl"
-        >
-          Espacios que elevan tu estilo de vida
-        </motion.h2>
-        
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-zinc-300"
-        >
-          Cada unidad ha sido diseñada con atención al detalle, 
-          combinando funcionalidad y elegancia contemporánea.
+          ← DESLIZAR PARA VER MÁS →
         </motion.p>
       </div>
 
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-100px" }}
-        className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-      >
-        {UNITS.map((unit) => (
-          <UnitCard key={unit.id} unit={unit} />
-        ))}
-      </motion.div>
+      {/* Background Decoration */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-[#B85C38]/5 via-transparent to-[#6B7456]/5 blur-3xl" />
     </section>
   );
 }

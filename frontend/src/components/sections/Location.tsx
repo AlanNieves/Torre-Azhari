@@ -44,15 +44,16 @@ const features = [
 export default function LocationSection() {
   return (
     <section className="mt-16 sm:mt-20 lg:mt-24">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        className="rounded-3xl border border-zinc-800 bg-gradient-to-br from-zinc-900/30 to-zinc-950/40 p-6 shadow-2xl shadow-black/20 sm:p-8"
-      >
-        <p className="text-xs font-semibold tracking-[0.18em] text-zinc-300">UBICACIÓN</p>
-        <h2 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl lg:text-5xl">
+      <div className="mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="rounded-3xl border border-[#E8E2D5] bg-white/30 p-6 shadow-xl sm:p-8"
+        >
+        <p className="text-xs font-semibold tracking-[0.18em] text-[#5C564F]">UBICACIÓN</p>
+        <h2 className="mt-3 font-serif text-3xl tracking-tight text-[#2A2520] sm:text-4xl lg:text-5xl">
           Contexto, acceso y estilo de vida
         </h2>
 
@@ -79,7 +80,7 @@ export default function LocationSection() {
              * Nota: Las coordenadas apuntan a la zona de Jardines de la Concepción.
              * Para mayor precisión, verificar la ubicación exacta del lote.
              */}
-            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-zinc-800 shadow-lg">
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-[#E8E2D5] shadow-lg">
               <InteractiveMap 
                 lat={21.9249} 
                 lng={-102.2962} 
@@ -89,7 +90,7 @@ export default function LocationSection() {
             </div>
             
             {/* Texto descriptivo debajo del mapa */}
-            <p className="mt-3 text-sm text-zinc-400">
+            <p className="mt-3 text-sm text-[#5C564F]">
               Luis Donaldo Colosio 123, Jardines de la Concepción - Aguascalientes, Ags.
             </p>
           </motion.div>
@@ -99,9 +100,9 @@ export default function LocationSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="rounded-3xl border border-zinc-800 bg-zinc-950/50 p-6 lg:col-span-5"
+            className="rounded-3xl border border-[#E8E2D5] bg-white/50 p-6 shadow-sm lg:col-span-5"
           >
-            <p className="text-xs font-semibold tracking-[0.18em] text-zinc-300">PUNTOS CLAVE</p>
+            <p className="text-xs font-semibold tracking-[0.18em] text-[#5C564F]">PUNTOS CLAVE</p>
             <ul className="mt-4 space-y-3">
               {features.map((feature, index) => (
                 <motion.li
@@ -110,9 +111,9 @@ export default function LocationSection() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                  className="flex items-center gap-3 text-sm text-zinc-300"
+                  className="flex items-center gap-3 text-sm text-[#2A2520]"
                 >
-                  <feature.icon className="h-5 w-5 text-zinc-500" />
+                  <feature.icon className="h-5 w-5 text-[#6B7456]" />
                   <span>{feature.text}</span>
                 </motion.li>
               ))}
@@ -120,6 +121,7 @@ export default function LocationSection() {
           </motion.div>
         </div>
       </motion.div>
+      </div>
     </section>
   );
 }

@@ -65,19 +65,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
 
         {/* Layout principal */}
-        <div className="relative flex min-h-screen flex-col">
+        <div className="relative flex min-h-screen flex-col" suppressHydrationWarning>
           {/* Navbar pegado a los bordes */}
           <Navbar />
           
-          {/* Contenido con padding y max-width */}
-          <div className="mx-auto w-full max-w-[1400px] flex-1 px-4 sm:px-6 lg:px-10">
+          {/* Contenido sin padding lateral */}
+          <div className="w-full flex-1" suppressHydrationWarning>
             <main className="snap-container">
               {children}
             </main>
           </div>
           
-          {/* Footer con padding consistente */}
-          <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
+          {/* Footer sin padding lateral */}
+          <div className="w-full" suppressHydrationWarning>
             <Footer />
           </div>
         </div>

@@ -23,7 +23,8 @@ export default function Masterplan() {
 
   return (
     <section className="mt-16 sm:mt-20 lg:mt-24">
-      <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+      <div className="mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
         {/* Información */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -32,11 +33,11 @@ export default function Masterplan() {
           transition={{ duration: 0.7 }}
           className="lg:col-span-5"
         >
-          <p className="text-xs font-semibold tracking-[0.18em] text-zinc-300">MASTERPLAN</p>
-          <h2 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl lg:text-5xl">
+          <p className="text-xs font-semibold tracking-[0.18em] text-[#5C564F]">MASTERPLAN</p>
+          <h2 className="mt-3 font-serif text-3xl tracking-tight text-[#2A2520] sm:text-4xl lg:text-5xl">
             Distribución inteligente
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-zinc-300">
+          <p className="mt-4 text-base leading-relaxed text-[#5C564F]">
             Cada nivel ha sido diseñado para maximizar el espacio, 
             las vistas y la privacidad de los residentes.
           </p>
@@ -50,10 +51,10 @@ export default function Masterplan() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
-                className="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-4"
+                className="rounded-2xl border border-[#E8E2D5] bg-white/50 p-4 shadow-sm"
               >
-                <p className="font-serif text-3xl">{spec.value}</p>
-                <p className="mt-1 text-xs text-zinc-400">{spec.label}</p>
+                <p className="font-serif text-3xl text-[#2A2520]">{spec.value}</p>
+                <p className="mt-1 text-xs text-[#5C564F]">{spec.label}</p>
               </motion.div>
             ))}
           </div>
@@ -64,26 +65,26 @@ export default function Masterplan() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-8 rounded-2xl border border-zinc-800 bg-zinc-950/50 p-6"
+            className="mt-8 rounded-2xl border border-[#E8E2D5] bg-white/50 p-6 shadow-sm"
           >
-            <h3 className="text-sm font-semibold tracking-[0.16em] text-zinc-300">
+            <h3 className="text-sm font-semibold tracking-[0.16em] text-[#5C564F]">
               CARACTERÍSTICAS TÉCNICAS
             </h3>
-            <ul className="mt-4 space-y-2 text-sm text-zinc-400">
+            <ul className="mt-4 space-y-2 text-sm text-[#5C564F]">
               <li className="flex items-center gap-2">
-                <span className="text-zinc-500">•</span>
+                <span className="text-[#6B7456]">•</span>
                 <span>Construcción de concreto armado</span>
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-zinc-500">•</span>
+                <span className="text-[#6B7456]">•</span>
                 <span>Fachada con acabados premium</span>
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-zinc-500">•</span>
+                <span className="text-[#6B7456]">•</span>
                 <span>Sistemas de eficiencia energética</span>
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-zinc-500">•</span>
+                <span className="text-[#6B7456]">•</span>
                 <span>Áreas verdes y jardines</span>
               </li>
             </ul>
@@ -98,10 +99,10 @@ export default function Masterplan() {
           transition={{ duration: 0.7 }}
           className="lg:col-span-7"
         >
-          <div className="rounded-3xl border border-zinc-800 bg-gradient-to-br from-zinc-900/40 to-zinc-950/60 p-6 shadow-2xl shadow-black/20 sm:p-8">
+          <div className="rounded-3xl border border-[#E8E2D5] bg-white/30 p-6 shadow-xl sm:p-8">
             {/* Plano placeholder */}
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/60 sm:aspect-[3/4]">
-              <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/40 via-zinc-900/60 to-zinc-950/80" />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-[#E8E2D5] bg-[#F5F1E8]/80 sm:aspect-[3/4]">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#E8E2D5]/40 via-[#F5F1E8]/60 to-white/80" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(250,250,250,0.02),transparent_70%)]" />
               
               {/* Vista lateral del edificio */}
@@ -114,10 +115,10 @@ export default function Masterplan() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                     onClick={() => setSelectedFloor("11")}
-                    className="absolute top-0 left-1/2 h-16 w-full -translate-x-1/2 cursor-pointer rounded-t-xl border-2 border-zinc-700 bg-zinc-800/60 transition-all duration-300 hover:border-zinc-500 hover:bg-zinc-700/60"
+                    className="absolute top-0 left-1/2 h-16 w-full -translate-x-1/2 cursor-pointer rounded-t-xl border-2 border-[#6B7456] bg-[#6B7456]/20 transition-all duration-300 hover:border-[#6B7456] hover:bg-[#6B7456]/30"
                   >
                     <div className="flex h-full items-center justify-center">
-                      <span className="text-xs font-semibold text-zinc-300">ROOF</span>
+                      <span className="text-xs font-semibold text-[#2A2520]">ROOF</span>
                     </div>
                   </motion.div>
 
@@ -127,19 +128,19 @@ export default function Masterplan() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, delay: 0.3 }}
-                    className="absolute left-1/2 top-20 h-[calc(100%-120px)] w-full -translate-x-1/2 cursor-pointer border-2 border-zinc-700 bg-gradient-to-b from-zinc-800/40 to-zinc-900/60 transition-all duration-300 hover:border-zinc-500"
+                    className="absolute left-1/2 top-20 h-[calc(100%-120px)] w-full -translate-x-1/2 cursor-pointer border-2 border-[#6B7456] bg-gradient-to-b from-[#6B7456]/10 to-[#6B7456]/20 transition-all duration-300 hover:border-[#6B7456]"
                     onClick={() => setSelectedFloor("1-10")}
                   >
                     {/* Líneas de pisos */}
                     {[...Array(9)].map((_, i) => (
                       <div
                         key={i}
-                        className="absolute left-0 right-0 border-t border-zinc-800/60"
+                        className="absolute left-0 right-0 border-t border-[#E8E2D5]"
                         style={{ top: `${(i + 1) * 10}%` }}
                       />
                     ))}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-xs font-semibold text-zinc-300">NIVELES 1-10</span>
+                      <span className="text-xs font-semibold text-[#2A2520]">NIVELES 1-10</span>
                     </div>
                   </motion.div>
 
@@ -150,10 +151,10 @@ export default function Masterplan() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.4 }}
                     onClick={() => setSelectedFloor("PB")}
-                    className="absolute bottom-0 left-1/2 h-20 w-full -translate-x-1/2 cursor-pointer rounded-b-xl border-2 border-zinc-700 bg-zinc-900/80 transition-all duration-300 hover:border-zinc-500 hover:bg-zinc-800/80"
+                    className="absolute bottom-0 left-1/2 h-20 w-full -translate-x-1/2 cursor-pointer rounded-b-xl border-2 border-[#6B7456] bg-[#6B7456]/30 transition-all duration-300 hover:border-[#6B7456] hover:bg-[#6B7456]/40"
                   >
                     <div className="flex h-full items-center justify-center">
-                      <span className="text-xs font-semibold text-zinc-300">PLANTA BAJA</span>
+                      <span className="text-xs font-semibold text-[#2A2520]">PLANTA BAJA</span>
                     </div>
                   </motion.div>
                 </div>
@@ -161,7 +162,7 @@ export default function Masterplan() {
 
               {/* Label */}
               <div className="absolute bottom-4 left-4">
-                <p className="text-xs font-semibold tracking-[0.16em] text-zinc-300">
+                <p className="text-xs font-semibold tracking-[0.16em] text-[#5C564F]">
                   VISTA ESQUEMÁTICA
                 </p>
               </div>
@@ -179,19 +180,19 @@ export default function Masterplan() {
                   onClick={() => setSelectedFloor(floor.level)}
                   className={`cursor-pointer rounded-xl border p-4 transition-all duration-300 ${
                     selectedFloor === floor.level
-                      ? "border-zinc-600 bg-zinc-800/60"
-                      : "border-zinc-800 bg-zinc-900/30 hover:border-zinc-700 hover:bg-zinc-900/50"
+                      ? "border-[#6B7456] bg-[#6B7456]/20"
+                      : "border-[#E8E2D5] bg-white/50 hover:border-[#6B7456] hover:bg-[#6B7456]/10"
                   }`}
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between" suppressHydrationWarning>
                     <div>
-                      <p className="text-sm font-semibold text-zinc-100">{floor.name}</p>
-                      <p className="mt-1 text-xs text-zinc-400">
+                      <p className="text-sm font-semibold text-[#2A2520]">{floor.name}</p>
+                      <p className="mt-1 text-xs text-[#5C564F]">
                         {floor.units > 0 ? `${floor.units} unidades` : "Áreas comunes"}
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs text-zinc-500">{floor.amenities.join(" · ")}</p>
+                      <p className="text-xs text-[#5C564F]">{floor.amenities.join(" · ")}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -199,6 +200,7 @@ export default function Masterplan() {
             </div>
           </div>
         </motion.div>
+        </div>
       </div>
     </section>
   );
