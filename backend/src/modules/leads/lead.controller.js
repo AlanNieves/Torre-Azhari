@@ -1,7 +1,7 @@
 const { createLead } = require("./lead.service");
 const { sendLeadNotification } = require("../../utils/mailer");
 
-exports.registerLead = async (req, res, next) => {
+async function registerLead(req, res, next) {
   try {
     const { name, email, phone, interest, source } = req.validatedBody;
 
@@ -13,7 +13,6 @@ exports.registerLead = async (req, res, next) => {
       source,
     });
 
-    // 🔔 Notificación no bloqueante
     try {
       await sendLeadNotification(lead);
     } catch (notifyErr) {
@@ -27,4 +26,6 @@ exports.registerLead = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-};
+}
+
+module.exports = { registerLead };
