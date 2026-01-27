@@ -7,11 +7,6 @@ const nextConfig: NextConfig = {
   // Compresión y optimización
   compress: true,
 
-  // Prevenir errores de hidratación por extensiones del navegador
-  experimental: {
-    optimizeCss: true,
-  },
-  
   // Optimización de imágenes
   images: {
     formats: ["image/avif", "image/webp"],
@@ -19,9 +14,6 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60,
   },
-  
-  // Optimización de fuentes
-  optimizeFonts: true,
   
   // Headers de seguridad y performance
   async headers() {
@@ -52,6 +44,7 @@ const nextConfig: NextConfig = {
   
   // Experimental features para mejor performance
   experimental: {
+    optimizeCss: true,
     optimizePackageImports: ["framer-motion"],
   },
 };
