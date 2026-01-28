@@ -79,13 +79,13 @@ export default function LeadForm() {
   }
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/20 p-6 sm:p-8">
+    <div className="relative overflow-hidden rounded-3xl border-2 border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-sm sm:p-8">
       <div className="max-w-2xl">
-        <p className="text-xs font-semibold tracking-[0.18em] text-zinc-300">CONTACTO</p>
-        <h2 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl">
+        <p className="text-xs font-semibold tracking-[0.18em] text-white/90">CONTACTO</p>
+        <h2 className="mt-3 font-serif text-3xl tracking-tight text-white sm:text-4xl">
           Agenda información del proyecto
         </h2>
-        <p className="mt-3 text-base leading-relaxed text-zinc-300">
+        <p className="mt-3 text-base leading-relaxed text-white/80">
           Comparte tus datos. Te contactaremos con atención y claridad.
         </p>
 
@@ -131,10 +131,10 @@ export default function LeadForm() {
               disabled={!canSubmit}
               whileTap={{ scale: canSubmit ? 0.98 : 1 }}
               className={[
-                "relative inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition",
+                "relative inline-flex items-center justify-center rounded-full px-8 py-4 text-sm font-semibold tracking-wide shadow-lg transition-all",
                 canSubmit
-                  ? "bg-zinc-100 text-zinc-950 hover:opacity-90"
-                  : "cursor-not-allowed bg-zinc-800 text-zinc-400",
+                  ? "bg-white text-[#2A2520] hover:bg-[#F5F1E8] hover:shadow-xl"
+                  : "cursor-not-allowed bg-white/20 text-white/40",
               ].join(" ")}
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -168,9 +168,9 @@ export default function LeadForm() {
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
-                  className="text-sm text-zinc-300"
+                  className="text-sm font-medium text-white"
                 >
-                  Recibido. Te contactaremos pronto.
+                  ✓ Recibido. Te contactaremos pronto.
                 </motion.p>
               )}
             </AnimatePresence>
@@ -182,14 +182,14 @@ export default function LeadForm() {
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
-                className="mt-1 text-sm text-red-300"
+                className="mt-1 rounded-xl bg-red-500/20 px-4 py-2 text-sm font-medium text-red-100"
               >
                 {errorMsg}
               </motion.p>
             )}
           </AnimatePresence>
 
-          <p className="mt-2 text-xs leading-relaxed text-zinc-500">
+          <p className="mt-2 text-xs leading-relaxed text-white/60">
             Al enviar aceptas ser contactado por el equipo de Torre Azhari. No compartimos tu información con terceros.
           </p>
         </form>
@@ -209,7 +209,7 @@ function Field(props: {
 }) {
   return (
     <label className="grid gap-2">
-      <span className="text-xs font-medium tracking-wide text-zinc-300">
+      <span className="text-xs font-semibold tracking-wide text-white/90">
         {props.label}
       </span>
       <motion.input
@@ -220,8 +220,8 @@ function Field(props: {
         autoComplete={props.autoComplete}
         inputMode={props.inputMode}
         whileFocus={{ scale: 1.005 }}
-        className="h-12 w-full rounded-2xl border border-zinc-800 bg-zinc-950/40 px-4 text-sm text-zinc-100 outline-none transition
-                   placeholder:text-zinc-600 focus:border-zinc-600 focus:ring-4 focus:ring-zinc-800/50"
+        className="h-14 w-full rounded-2xl border-2 border-white/30 bg-white/10 px-5 text-base text-white shadow-inner backdrop-blur-sm outline-none transition
+                   placeholder:text-white/50 focus:border-white/60 focus:bg-white/15 focus:ring-4 focus:ring-white/20"
       />
     </label>
   );
@@ -235,7 +235,7 @@ function TextArea(props: {
 }) {
   return (
     <label className="grid gap-2">
-      <span className="text-xs font-medium tracking-wide text-zinc-300">
+      <span className="text-xs font-semibold tracking-wide text-white/90">
         {props.label}
       </span>
       <motion.textarea
@@ -244,8 +244,8 @@ function TextArea(props: {
         placeholder={props.placeholder}
         rows={4}
         whileFocus={{ scale: 1.003 }}
-        className="w-full resize-none rounded-2xl border border-zinc-800 bg-zinc-950/40 px-4 py-3 text-sm text-zinc-100 outline-none transition
-                   placeholder:text-zinc-600 focus:border-zinc-600 focus:ring-4 focus:ring-zinc-800/50"
+        className="w-full resize-none rounded-2xl border-2 border-white/30 bg-white/10 px-5 py-4 text-base text-white shadow-inner backdrop-blur-sm outline-none transition
+                   placeholder:text-white/50 focus:border-white/60 focus:bg-white/15 focus:ring-4 focus:ring-white/20"
       />
     </label>
   );
@@ -253,6 +253,6 @@ function TextArea(props: {
 
 function Spinner() {
   return (
-    <span className="inline-flex h-4 w-4 animate-spin rounded-full border-2 border-zinc-600 border-t-zinc-950" />
+    <span className="inline-flex h-4 w-4 animate-spin rounded-full border-2 border-[#2A2520] border-t-white" />
   );
 }

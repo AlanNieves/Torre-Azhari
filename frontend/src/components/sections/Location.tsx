@@ -43,7 +43,7 @@ const features = [
 
 export default function LocationSection() {
   return (
-    <section className="mt-16 sm:mt-20 lg:mt-24">
+    <section className="min-h-[95vh] bg-[#F5F1E8] py-24 sm:py-28 lg:py-36">
       <div className="mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

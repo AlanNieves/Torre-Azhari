@@ -22,7 +22,7 @@ export default function Masterplan() {
   const [selectedFloor, setSelectedFloor] = useState<string | null>(null);
 
   return (
-    <section className="mt-16 sm:mt-20 lg:mt-24">
+    <section className="min-h-screen bg-white py-24 sm:py-28 lg:py-36">
       <div className="mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
         {/* Información */}

@@ -6,7 +6,9 @@
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start -p 3001",
-    "lint": "eslint"
+    "lint": "eslint",
+    "clean": "node -e \"require('fs').rmSync('.next', {recursive: true, force: true})\"",
+    "prebuild": "node -e \"require('fs').rmSync('.next', {recursive: true, force: true})\""
   },
   "dependencies": {
     "framer-motion": "^12.28.1",

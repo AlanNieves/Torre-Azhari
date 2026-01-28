@@ -6,7 +6,7 @@ import LeadForm from "@/components/forms/LeadForm";
 
 export default function CTA() {
   return (
-    <section className="relative overflow-hidden bg-[#6B7456] py-20 sm:py-24 lg:py-32" id="contacto">
+    <section className="relative min-h-screen overflow-hidden bg-[#6B7456] py-24 sm:py-28 lg:py-36" id="contacto">
       {/* Background Pattern */}
       <div className="pointer-events-none absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.2),transparent_50%)]" />

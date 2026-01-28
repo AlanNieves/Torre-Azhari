@@ -103,7 +103,7 @@ function AmenityCard({ amenity, index }: { amenity: Amenity; index: number }) {
 
 export default function Amenities() {
   return (
-    <section className="bg-[#E8E2D5] py-20 sm:py-24 lg:py-32">
+    <section className="min-h-[90vh] bg-[#E8E2D5] py-24 sm:py-28 lg:py-36">
       <div className="mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16">
         {/* Header */}
         <div className="mb-20">

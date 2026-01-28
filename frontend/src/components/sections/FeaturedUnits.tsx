@@ -174,7 +174,7 @@ export default function FeaturedUnits() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#F5F1E8] py-20 sm:py-24 lg:py-32">
+    <section className="relative min-h-screen overflow-hidden bg-[#F5F1E8] py-24 sm:py-28 lg:py-36">
       <div className="mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16">
         {/* Header */}
         <div className="mb-16 flex items-end justify-between">

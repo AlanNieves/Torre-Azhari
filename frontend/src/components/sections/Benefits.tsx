@@ -57,7 +57,7 @@ export default function Benefits() {
   };
 
   return (
-    <section ref={containerRef} className="relative overflow-hidden bg-[#F5F1E8] py-20 sm:py-24 lg:py-32">
+    <section ref={containerRef} className="relative min-h-[90vh] overflow-hidden bg-[#F5F1E8] py-24 sm:py-28 lg:py-36">
       <div className="mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16">
         <div className="flex items-end justify-between">
           <motion.div
