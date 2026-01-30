@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
   // Compresión y optimización
   compress: true,
 
+  // Suprimir warnings de hidratación causados por extensiones del navegador
+  onDemandEntries: {
+    maxInactiveAge: 25 * 1000,
+    pagesBufferLength: 2,
+  },
+
   // Optimización de imágenes
   images: {
     formats: ["image/avif", "image/webp"],
