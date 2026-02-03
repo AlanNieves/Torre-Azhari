@@ -6,7 +6,10 @@ const nextConfig: NextConfig = {
   
   // Compresión y optimización
   compress: true,
-
+  
+  // Output para hosting tradicional como Hostinger
+  output: "standalone",
+  
   // Suprimir warnings de hidratación causados por extensiones del navegador
   onDemandEntries: {
     maxInactiveAge: 25 * 1000,
@@ -18,7 +21,11 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 86400, // 24 horas - contenido inmobiliario es relativamente estático
+    minimumCacheTTL: 31536000, // 1 año - contenido inmobiliario es relativamente estático
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    unoptimized: false,
   },
   
   // Headers de seguridad y performance
@@ -43,9 +50,27 @@ const nextConfig: NextConfig = {
             key: "Referrer-Policy",
             value: "origin-when-cross-origin",
           },
+          {
+            key: "X-XSS-Protection",
+            value: "1; mode=block",
+          },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
         ],
       },
-      // Caché agresivo para assets estáticos (logos, iconos, fuentes)
+      // Caché agresivo para imágenes
+      {
+        source: "/images/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable", // 1 año
+          },
+        ],
+      },
+      // Caché agresivo para logos
       {
         source: "/logos/:path*",
         headers: [

@@ -2,53 +2,44 @@
 
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative -mt-20 flex min-h-screen w-full items-center justify-center overflow-hidden bg-gray-900">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: "url('/images/img18.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
+    <section className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-gray-900 pt-20">
+      {/* Background Image - Optimizado con Next.js Image */}
+      <Image
+        src="/images/img18.jpg"
+        alt="Azhari Desarrollos - Residencias de lujo"
+        fill
+        priority
+        quality={75}
+        sizes="100vw"
+        className="object-cover"
       />
       
       {/* Overlay */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/60 via-black/55 to-black/50" />
 
       {/* Content */}
-      <div className="relative z-10 flex min-h-screen w-full items-center justify-center px-6 pt-20">
+      <div className="relative z-10 flex h-full w-full items-center justify-center px-6 py-24">
         <div className="w-full max-w-6xl text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-6 font-serif text-6xl font-light leading-tight text-white sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem]"
-          >
+          <h1 className="mb-6 font-serif text-6xl font-light leading-tight text-white sm:text-7xl md:text-8xl lg:text-9xl animate-fade-in">
             Azhari
             <br />
             Desarrollos
-          </motion.h1>
+          </h1>
           
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mx-auto mb-20 max-w-4xl text-lg font-light leading-relaxed text-white sm:text-xl md:text-2xl lg:text-3xl"
-          >
+          <p className="mx-auto mb-12 max-w-4xl text-lg font-light leading-relaxed text-white sm:text-xl md:text-2xl animate-fade-in-delay">
             Desarrollos inmobiliarios que combinan lujo, ubicación y plusvalía
-          </motion.p>
+          </p>
 
           {/* Scroll Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col items-center gap-4"
+            className="flex flex-col items-center gap-2"
           >
             <span className="text-sm font-medium tracking-[0.4em] text-white">
               DESCUBRIR

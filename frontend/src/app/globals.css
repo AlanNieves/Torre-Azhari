@@ -5,3 +5,45 @@
   --font-serif: "Playfair Display", Georgia, serif;
 }
 
+/* Optimizaciones de performance y animaciones CSS nativas */
+@layer utilities {
+  /* Animaciones optimizadas con GPU acceleration */
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+    will-change: opacity, transform;
+  }
+
+  .animate-fade-in-delay {
+    animation: fadeIn 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+    will-change: opacity, transform;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Optimización de scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Mejora de renderizado de fuentes */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Optimización de imágenes y media */
+  img, video {
+    content-visibility: auto;
+  }
+}
