@@ -1,9 +1,29 @@
-//evita spams y ataques tontos a los endpoints /leads
-const rateLimit = require('express-rate-limit'); //middlewaree oficial para rrate limiting
+// Evita spam y ataques básicos a endpoints
+const rateLimit = require('express-rate-limit');
 
-module.exports = rateLimit({      //exportar middle ya configurado
-    windowMs: 15 * 60 * 1000,   //ventana de 15 minuitos 
-    limit: 100, //maximo 100 requests por IP por ventana
-    standardHeaders: true, //Devuelve headers estandar RateLimit-*
-    legacyHeaders: false, //Desactiva headers antiguos (menos ruido)
+const leadRateLimit = rateLimit({
+  windowMs: 10 * 60 * 1000, // 10 minutos
+  limit: 5,                // 5 requests por IP
+  standardHeaders: true,   // RateLimit-* headers
+  legacyHeaders: false,    // sin headers legacy
+
+  /**
+   * 🔥 Bypass de rate limit para amenazas ya bloqueadas
+   * ThreatScore tiene prioridad absoluta
+   */
+  skip: (req) => {
+    return req._threatBlocked === true;
+  },
+
+  handler: (req, res) => {
+    return res.status(429).json({
+      success: false,
+      error: {
+        code: 'RATE_LIMIT_EXCEEDED',
+        message: 'Demasiadas solicitudes. Intenta más tarde.',
+      },
+    });
+  },
 });
+
+module.exports = leadRateLimit;
