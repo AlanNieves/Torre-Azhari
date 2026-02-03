@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const { logHoneypotHit } = require('./honeypot.logger');
 const { registerThreatHit } = require('../threatScore');
-
+const { inc } = require('../../observability/metrics')
 /**
  * Rutas trampa clásicas
  */
@@ -49,6 +49,8 @@ function honeypotMiddleware(req, res, next) {
     reason: 'honeypot endpoint accessed',
     score: 15
   });
+
+  inc('honeypotHits');
 
   // 🔥 Incrementa ThreatScore
   registerThreatHit({

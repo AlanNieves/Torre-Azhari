@@ -4,6 +4,8 @@ const rateLimit = require('./middlewares/rateLimit');
 const errorHandler = require('./middlewares/errorHandler');
 const routes = require('./routes');
 
+const tarpitMiddleware = require('./security/tarpit/tarpit.middleware');
+
 // 🔐 Security core
 const securityHeaders = require('./security/securityHeaders.middleware');
 const corsMiddleware = require('./security/cors.middleware');
@@ -27,6 +29,7 @@ app.use(express.json({ limit: '1mb' }));
 app.use(securityHeaders);
 app.use(corsMiddleware);
 app.use(threatScoreMiddleware);
+app.use(tarpitMiddleware);
 app.use(rateLimit);
 app.use(honeypotMiddleware);
 

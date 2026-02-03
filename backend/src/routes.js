@@ -1,12 +1,37 @@
-const express = require('express');               // Express para router global
-const leadRoutes = require('./modules/leads/lead.routes'); // Importa rutas del módulo leads
+const express = require('express');               
+const leadRoutes = require('./modules/leads/lead.routes');
 
-const router = express.Router();                  // Crea router principal
+// 🔎 Metrics (observability)
+const { snapshot } = require('./observability/metrics');
 
-router.get('/health', (req, res) =>               // Endpoint de salud para monitoreo
-  res.json({ ok: true })                          // Respuesta simple
-);
+const router = express.Router();
 
-router.use('/leads', leadRoutes);                 // Monta leads en /api/leads
+/**
+ * ─────────────────────────────
+ * Healthcheck
+ * ─────────────────────────────
+ */
+router.get('/health', (req, res) => {
+  res.json({ ok: true });
+});
 
-module.exports = router;                          // Exporta router para app.js
+/**
+ * ─────────────────────────────
+ * Rutas públicas reales
+ * ─────────────────────────────
+ */
+router.use('/leads', leadRoutes);
+
+/**
+ * ─────────────────────────────
+ * Rutas internas (NO públicas)
+ * Solo disponibles fuera de producción
+ * ─────────────────────────────
+ */
+if (process.env.NODE_ENV !== 'production') {
+  router.get('/internal/metrics', (req, res) => {
+    res.json(snapshot());
+  });
+}
+
+module.exports = router;

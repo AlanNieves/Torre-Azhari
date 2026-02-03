@@ -1,7 +1,8 @@
 const crypto = require('crypto');
 const { getThreat } = require('./threatScore.store');
 const { evaluateThreat } = require('./threatScore.engine');
-
+const { logSecurityEvent } = require('../../observability/audit.logger');
+const { inc } = require('../../observability/metrics');
 function generateFingerprint(req) {
   return crypto
     .createHash('sha256')
@@ -22,7 +23,13 @@ function threatScoreMiddleware(req, res, next) {
 
   if (decision.action === 'BLOCK') {
     // 🔥 Marca para saltar rateLimit
-    req._threatBlocked = true;
+    inc('threatBlocked');
+    logSecurityEvent({
+      category: 'threat-score',
+      action: 'BLOCK',
+      fingerprint,
+      score: threat.score,
+    });
 
     return res.status(403).json({
       error: 'Access denied'
@@ -30,9 +37,12 @@ function threatScoreMiddleware(req, res, next) {
   }
 
   if (decision.action === 'RATE_LIMIT') {
-    res.setHeader('Retry-After', '60');
-    return res.status(429).json({
-      error: 'Too many requests'
+    inc('threatRateLimited');
+    logSecurityEvent({
+      category: 'threat-score',
+      action: 'RATE_LIMIT',
+      fingerprint,
+      score: threat.score
     });
   }
 
