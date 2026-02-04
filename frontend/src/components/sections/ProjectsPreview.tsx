@@ -2,28 +2,35 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { MapPin } from "lucide-react";
 
 const PROJECTS = [
   {
     id: "torre-azhari",
     title: "Torre Azhari",
-    description: "Residencias verticales de lujo en el corazón de las zonas más exclusivas de la ciudad con acabados de primer nivel.",
+    location: "Aguascalientes, México.",
+    description: "Residencias verticales de lujo en una de las zonas más exclusivas de Aguascalientes.",
     image: "/images/img40.jpg",
     link: "/proyectos/torre-azhari",
+    linkText: "Conocer proyecto",
   },
   {
     id: "amara",
     title: "AMARA",
-    description: "Terrenos habitacionales en un entorno natural, con amenidades únicas y privacidad en la zona oriente.",
+    location: "Aguascalientes, México.",
+    description: "Terrenos habitacionales en un entorno natural, con plusvalía y planeación a largo plazo.",
     image: "/images/img71.jpg",
     link: "/proyectos/amara",
+    linkText: "Conocer proyecto",
   },
   {
     id: "proximos",
     title: "Próximos desarrollos",
-    description: "Nuevos proyectos estratégicos, ubicados para generar valor, diseño y plusvalía.",
+    location: "Aguascalientes, México.",
+    description: "Nuevos proyectos en planeación, pensados para quienes buscan invertir con visión.",
     image: "/images/img43.jpg",
     link: "/proyectos",
+    linkText: "Próximamente",
   },
 ];
 
@@ -65,17 +72,21 @@ export default function ProjectsPreview() {
 
               {/* Content */}
               <div className="p-6">
-                <h3 className="mb-3 font-serif text-2xl font-light text-white">
+                <h3 className="mb-2 font-serif text-2xl font-light text-white">
                   {project.title}
                 </h3>
+                <div className="mb-4 flex items-center gap-2 text-gray-400">
+                  <MapPin size={16} />
+                  <span className="text-sm">{project.location}</span>
+                </div>
                 <p className="mb-6 text-sm leading-relaxed text-gray-400">
                   {project.description}
                 </p>
                 <Link
                   href={project.link}
-                  className="inline-block text-sm font-light text-white transition-opacity hover:opacity-70"
+                  className="inline-block text-sm font-light text-white underline transition-opacity hover:opacity-70"
                 >
-                  Ver proyecto →
+                  {project.linkText}
                 </Link>
               </div>
             </motion.div>

@@ -1,15 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, ShoppingBag, Users, Shield } from "lucide-react";
+import { Car, Building2, Users, Shield } from "lucide-react";
 
 const BENEFITS = [
   {
-    icon: MapPin,
+    icon: Car,
     title: "Conectividad y accesos",
   },
   {
-    icon: ShoppingBag,
+    icon: Building2,
     title: "Zona exclusiva y servicios",
   },
   {
@@ -26,6 +26,28 @@ export default function Location() {
   return (
     <section className="bg-[#1e1e1e] py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
+        {/* Label */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-6"
+        >
+          <span className="text-sm font-light uppercase tracking-wider text-gray-400">UBICACIÓN</span>
+        </motion.div>
+
+        {/* Title */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <h2 className="font-serif text-4xl font-light text-white lg:text-5xl">
+            Contexto, acceso y estilo de vida
+          </h2>
+        </motion.div>
+
         <div className="overflow-hidden rounded-2xl bg-[#2a2a2a]">
           <div className="grid gap-8 lg:grid-cols-2">
             {/* Mapa */}
@@ -37,14 +59,13 @@ export default function Location() {
               className="h-[400px] lg:h-auto"
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29685.66489897815!2d-102.29589!3d21.88234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429ee986a6e1d21%3A0x7ca2b8c5d8f6d3a!2sAguascalientes%2C%20Ags.!5e0!3m2!1ses-419!2smx!4v1234567890123!5m2!1ses-419!2smx"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3702.2866744985616!2d-102.28845792485924!3d21.921649779613897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429ee5e5e5e5e5e%3A0x5e5e5e5e5e5e5e5e!2sCerro%20de%20la%20Bufa%20124%2C%20Jardines%20de%20la%20Concepci%C3%B3n%20I%2C%2020120%20Aguascalientes%2C%20Ags.!5e0!3m2!1ses-419!2smx!4v1234567890123!5m2!1ses-419!2smx"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale"
               />
             </motion.div>
 
@@ -76,6 +97,17 @@ export default function Location() {
                   </motion.div>
                 );
               })}
+
+              {/* Address */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="pt-6 text-sm font-light text-gray-400"
+              >
+                Cerro de La Bufa 124, Jardines de la Concepción I, 20120 Aguascalientes, Ags.
+              </motion.div>
             </motion.div>
           </div>
         </div>
