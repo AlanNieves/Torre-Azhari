@@ -42,10 +42,10 @@ export default function Navbar() {
           <img 
             src="/logos/TorreAzhariLogo.svg" 
             alt="Azhari Logo"
-            className="h-10 w-10 object-contain"
+            className="h-14 w-14 object-contain"
             style={{ filter: 'brightness(0) invert(1)' }}
           />
-          <span className="font-serif text-xl font-normal tracking-tight text-white group-hover:opacity-80 transition-opacity">
+          <span className="font-serif text-2xl font-normal tracking-tight text-white group-hover:opacity-80 transition-opacity">
             Azhari
           </span>
         </Link>
