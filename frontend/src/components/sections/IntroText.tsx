@@ -29,15 +29,17 @@ export default function IntroText() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col justify-center"
+            className="flex flex-col justify-center space-y-6"
           >
             <p className="text-base leading-relaxed text-gray-300">
-              Azhari Desarrollos es una desarrolladora inmobiliaria enfocada en crear 
-              proyectos bien pensados, con calidad, diseño y ubicación como base. Cada 
-              proyecto se construye con materiales de primer nivel y acabados que reflejan 
-              atención al detalle. Nuestra filosofía va más allá del diseño: buscamos crear 
-              espacios donde el diseño exterior mejore el día a día y brinde espacios únicos 
-              que eleven la calidad de vida.
+              Azhari Desarrollos es una desarrolladora inmobiliaria enfocada en crear
+              proyectos bien pensados, con diseño, calidad y ubicación como ejes
+              principales.
+            </p>
+            <p className="text-base leading-relaxed text-gray-300">
+              Cada desarrollo responde a una estrategia clara: generar plusvalía real,
+              ofrecer espacios de alto nivel y brindar certeza a quienes buscan
+              invertir o vivir bien.
             </p>
           </motion.div>
         </div>

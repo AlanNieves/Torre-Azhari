@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import { Facebook, Instagram, MessageCircle } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Inicio", href: "/" },
@@ -17,13 +19,54 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-3">
           {/* Brand Column */}
           <div>
-            <div className="mb-4 font-serif text-2xl text-white">
-              Azhari
+            <div className="mb-6">
+              <div className="flex items-center gap-3">
+                <img 
+                  src="/logos/TorreAzhariLogo.svg" 
+                  alt="Azhari Logo"
+                  className="h-12 w-12 object-contain"
+                  style={{ filter: 'brightness(0) invert(1)' }}
+                />
+                <span className="font-serif text-2xl font-normal tracking-tight text-white">
+                  Azhari
+                </span>
+              </div>
             </div>
-            <p className="text-sm leading-relaxed text-gray-400">
+            <p className="mb-6 text-sm leading-relaxed text-gray-400">
               Desarrollos inmobiliarios que combinan visión, calidad y plusvalía. 
-              Construimos proyectos pensados para vivir mejor.
+              Construimos proyectos pensados para vivir e invertir mejor.
             </p>
+            
+            {/* Social Media Icons */}
+            <div className="flex gap-4">
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-white hover:bg-white hover:text-black"
+                aria-label="Facebook"
+              >
+                <Facebook size={18} />
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-white hover:bg-white hover:text-black"
+                aria-label="Instagram"
+              >
+                <Instagram size={18} />
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-white hover:bg-white hover:text-black"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle size={18} />
+              </a>
+            </div>
           </div>
 
           {/* Navigation Column */}
