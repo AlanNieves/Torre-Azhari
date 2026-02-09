@@ -1,5 +1,5 @@
-import AboutAzhari from '@/components/sections/aboutAzhari/AboutAzhari';
-import LeadForm from '@/components/sections/LeadForm';
+import AboutAzhari from './components/AboutAzhari';
+import LeadForm from '@/shared/LeadForm';
 
 export const metadata = {
   title: 'Sobre Azhari | Azhari Desarrollos',

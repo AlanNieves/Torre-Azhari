@@ -123,6 +123,7 @@ export default function LeadForm() {
             placeholder="Ej. Me interesa conocer disponibilidad, precios y amenidades."
             value={values.message}
             onChange={(v) => onChange("message", v)}
+            autoComplete="off"
           />
 
           <div className="mt-2 flex items-center gap-3">
@@ -232,6 +233,7 @@ function TextArea(props: {
   placeholder?: string;
   value: string;
   onChange: (v: string) => void;
+  autoComplete?: string;
 }) {
   return (
     <label className="grid gap-2">
@@ -243,6 +245,7 @@ function TextArea(props: {
         onChange={(e) => props.onChange(e.target.value)}
         placeholder={props.placeholder}
         rows={4}
+        autoComplete={props.autoComplete}
         whileFocus={{ scale: 1.003 }}
         className="w-full resize-none rounded-2xl border-2 border-white/30 bg-white/10 px-5 py-4 text-base text-white shadow-inner backdrop-blur-sm outline-none transition
                    placeholder:text-white/50 focus:border-white/60 focus:bg-white/15 focus:ring-4 focus:ring-white/20"

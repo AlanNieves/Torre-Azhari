@@ -1,12 +1,12 @@
 // src/app/page.tsx
 import type { Metadata } from "next";
-import Hero from "@/components/sections/Hero";
-import IntroText from "@/components/sections/IntroText";
-import ProjectsPreview from "@/components/sections/ProjectsPreview";
-import WhyAzhari from "@/components/sections/WhyAzhari";
-import BrandCTA from "@/components/sections/BrandCTA";
-import Location from "@/components/sections/Location";
-import LeadForm from "@/components/sections/LeadForm";
+import Hero from "./homepage/components/Hero";
+import IntroText from "./homepage/components/IntroText";
+import ProjectsPreview from "@/shared/ProjectsPreview";
+import WhyAzhari from "./homepage/components/WhyAzhari";
+import BrandCTA from "./homepage/components/BrandCTA";
+import Location from "./homepage/components/Location";
+import LeadForm from "@/shared/LeadForm";
 
 export const metadata: Metadata = {
   title: "Azhari Desarrollos | Desarrollos Inmobiliarios en Aguascalientes",
