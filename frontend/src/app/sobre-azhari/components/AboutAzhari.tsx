@@ -7,20 +7,20 @@ const PHILOSOPHY_ITEMS = [
   {
     icon: Shield,
     title: "Compromiso con la calidad",
-    subtitle: "Lo que prometemos, lo hacemos",
-    description: "Nos distinguimos por el estricto rigor y excelencia en la ejecución de cada proyecto. Gestionamos procesos a través de estrategias que aseguran funcionalidad, durabilidad y confort, utilizando solo materiales seleccionados y procesos estandarizados que garantizan la más alta calidad en cada espacio."
+    subtitle: "Lo que prometemos, lo cumplimos",
+    description: "Nos distinguimos por un enfoque claro y transparente en cada etapa del proceso. Desde la planeación hasta la entrega, trabajamos con altos estándares de calidad, materiales seleccionados y procesos definidos que garantizan confianza y certeza a nuestros clientes."
   },
   {
     icon: Home,
     title: "Construyendo patrimonios",
-    subtitle: "Invertir con resultado rápido",
-    description: "Nuestro desarrollo nace pensado en la plusvalía inmediata y en un entorno en constante crecimiento con infraestructura y servicios en expansión. Cada proyecto es construido bajo una visión estratégica en el desarrollo de vivienda, que busca impulsar la consolidación patrimonial a través de ubicaciones premium."
+    subtitle: "Invertir con respaldo importa",
+    description: "Nuestros desarrollos están pensados para generar plusvalía real, apoyados en ubicaciones estratégicas, conceptos sólidos y una visión de crecimiento a largo plazo. Ya sea un proyecto residencial vertical o un desarrollo de terrenos, cada iniciativa responde a una lógica clara de valor."
   },
   {
     icon: ArrowRight,
     title: "Visión a futuro",
-    subtitle: "Desarrollos hoy, patrimonio de mañana",
-    description: "En Azhari Desarrollos seguimos estándares rigurosos que cumplen más allá del marco legal y regulatorio. Cada proyecto ha sido concebido con una visión a largo plazo, fundamentada en análisis profundo del entorno, proyección urbana y demanda futura para ofrecer espacios por su calidad, diseño y potencial."
+    subtitle: "Desarrollar hoy pensando en mañana",
+    description: "En Azhari Desarrollos seguimos creciendo con una visión firme: crear proyectos que eleven el estándar inmobiliario en Aguascalientes, aporten valor a la ciudad y se conviertan en referentes por su calidad, diseño y planeación."
   }
 ];
 
@@ -64,7 +64,7 @@ export default function AboutAzhari() {
             className="overflow-hidden rounded-2xl"
           >
             <img
-              src="/images/img49.jpg"
+              src="/images/img182.jpg"
               alt="Torre Azhari"
               className="h-[400px] w-full object-cover lg:h-[500px]"
             />
@@ -101,10 +101,10 @@ export default function AboutAzhari() {
               className="flex items-center"
             >
               <p className="text-base font-light leading-relaxed text-white/80">
-                En Azhari creemos que un buen desarrollo no solo se mide por su 
-                estética, sino por su funcionalidad, su entorno y su impacto a largo 
-                plazo. Por ello, cada proyecto nace de un análisis profundo del 
-                contexto urbano, la demanda futura y la rentabilidad real para quienes confían 
+                En Azhari creemos que un buen desarrollo no solo se mide por su
+                estética, sino por su funcionalidad, su entorno y su impacto a largo
+                plazo. Por eso, cada proyecto nace de un análisis profundo del
+                mercado, la ubicación y las necesidades reales de quienes confían
                 en nosotros.
               </p>
             </motion.div>

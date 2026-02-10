@@ -18,7 +18,7 @@ type LeadFormValues = {
 const initialValues: LeadFormValues = {
   name: "",
   email: "",
-  phone: "",
+  phone: "+52",
   message: "",
 };
 
@@ -45,11 +45,27 @@ export default function LeadForm() {
   const canSubmit = useMemo(() => {
     const nameOk = trim(values.name).length >= 2;
     const emailOk = isEmail(values.email);
-    return nameOk && emailOk && state !== "loading";
-  }, [values.name, values.email, state]);
+    // Phone should have +52 plus at least 10 digits (total length >= 13)
+    const phoneOk = sanitizePhone(values.phone).length >= 13;
+    return nameOk && emailOk && phoneOk && state !== "loading";
+  }, [values.name, values.email, values.phone, state]);
 
   function onChange<K extends keyof LeadFormValues>(key: K, v: string) {
     setValues((prev) => ({ ...prev, [key]: v }));
+  }
+
+  function onPhoneChange(v: string) {
+    // Ensure the phone always starts with +52
+    if (!v) {
+      setValues((prev) => ({ ...prev, phone: "+52" }));
+      return;
+    }
+    if (!v.startsWith("+52")) {
+      const digits = v.replace(/[^\d]/g, "");
+      setValues((prev) => ({ ...prev, phone: "+52" + digits }));
+      return;
+    }
+    setValues((prev) => ({ ...prev, phone: v }));
   }
 
   async function onSubmit(e: React.FormEvent) {
@@ -79,20 +95,19 @@ export default function LeadForm() {
   }
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border-2 border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-sm sm:p-8">
-      <div className="max-w-2xl">
-        <p className="text-xs font-semibold tracking-[0.18em] text-white/90">CONTACTO</p>
-        <h2 className="mt-3 font-serif text-3xl tracking-tight text-white sm:text-4xl">
-          Agenda información del proyecto
+    <div className="relative overflow-hidden bg-[#1e1e1e] px-6 py-16 sm:px-8 sm:py-24">
+      <div className="mx-auto max-w-2xl">
+        <h2 className="font-serif text-3xl tracking-tight text-white sm:text-4xl lg:text-[2.5rem]">
+          Conversemos sobre tu próxima inversión
         </h2>
-        <p className="mt-3 text-base leading-relaxed text-white/80">
-          Comparte tus datos. Te contactaremos con atención y claridad.
+        <p className="mt-4 text-base leading-relaxed text-white/70">
+          Si quieres conocer más sobre nuestros proyectos, recibir información personalizada o agendar una cita, déjanos tus datos y uno de nuestros asesores se pondrá en contacto contigo.
         </p>
 
-        <form onSubmit={onSubmit} className="mt-8 grid gap-4">
+        <form onSubmit={onSubmit} className="mt-8 grid gap-6">
           <Field
-            label="Nombre"
-            placeholder="Tu nombre"
+            label="NOMBRE"
+            placeholder="Escribe aquí..."
             value={values.name}
             onChange={(v) => onChange("name", v)}
             autoComplete="name"
@@ -100,8 +115,8 @@ export default function LeadForm() {
           />
 
           <Field
-            label="Correo"
-            placeholder="tucorreo@dominio.com"
+            label="CORREO"
+            placeholder="Escribe aquí..."
             value={values.email}
             onChange={(v) => onChange("email", v)}
             autoComplete="email"
@@ -110,17 +125,18 @@ export default function LeadForm() {
           />
 
           <Field
-            label="Teléfono (opcional)"
-            placeholder="+52 ..."
+            label="TELÉFONO"
+            placeholder="+52"
             value={values.phone}
-            onChange={(v) => onChange("phone", v)}
+            onChange={onPhoneChange}
             autoComplete="tel"
             inputMode="tel"
+            required
           />
 
           <TextArea
-            label="Mensaje (opcional)"
-            placeholder="Ej. Me interesa conocer disponibilidad, precios y amenidades."
+            label="MENSAJE"
+            placeholder="Escribe aquí..."
             value={values.message}
             onChange={(v) => onChange("message", v)}
             autoComplete="off"
@@ -157,7 +173,7 @@ export default function LeadForm() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -4 }}
                   >
-                    Enviar solicitud
+                    Enviar
                   </motion.span>
                 )}
               </AnimatePresence>
@@ -190,8 +206,8 @@ export default function LeadForm() {
             )}
           </AnimatePresence>
 
-          <p className="mt-2 text-xs leading-relaxed text-white/60">
-            Al enviar aceptas ser contactado por el equipo de Torre Azhari. No compartimos tu información con terceros.
+          <p className="mt-4 text-sm italic leading-relaxed text-white/60">
+            Al enviar este formulario, acepta que almacenemos sus datos para gestionar su consulta.
           </p>
         </form>
       </div>
@@ -209,9 +225,9 @@ function Field(props: {
   inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"];
 }) {
   return (
-    <label className="grid gap-2">
-      <span className="text-xs font-semibold tracking-wide text-white/90">
-        {props.label}
+    <label className="grid gap-3">
+      <span className="text-xs font-normal tracking-wide text-white/90">
+        {props.label} {props.required && <span className="text-white">*</span>}
       </span>
       <motion.input
         value={props.value}
@@ -220,9 +236,9 @@ function Field(props: {
         required={props.required}
         autoComplete={props.autoComplete}
         inputMode={props.inputMode}
-        whileFocus={{ scale: 1.005 }}
-        className="h-14 w-full rounded-2xl border-2 border-white/30 bg-white/10 px-5 text-base text-white shadow-inner backdrop-blur-sm outline-none transition
-                   placeholder:text-white/50 focus:border-white/60 focus:bg-white/15 focus:ring-4 focus:ring-white/20"
+        whileFocus={{ scale: 1.002 }}
+        className="h-14 w-full rounded-xl border-0 bg-white/5 px-5 text-base text-white outline-none transition
+                   placeholder:text-white/40 focus:bg-white/10"
       />
     </label>
   );
@@ -236,19 +252,19 @@ function TextArea(props: {
   autoComplete?: string;
 }) {
   return (
-    <label className="grid gap-2">
-      <span className="text-xs font-semibold tracking-wide text-white/90">
+    <label className="grid gap-3">
+      <span className="text-xs font-normal tracking-wide text-white/90">
         {props.label}
       </span>
       <motion.textarea
         value={props.value}
         onChange={(e) => props.onChange(e.target.value)}
         placeholder={props.placeholder}
-        rows={4}
+        rows={5}
         autoComplete={props.autoComplete}
-        whileFocus={{ scale: 1.003 }}
-        className="w-full resize-none rounded-2xl border-2 border-white/30 bg-white/10 px-5 py-4 text-base text-white shadow-inner backdrop-blur-sm outline-none transition
-                   placeholder:text-white/50 focus:border-white/60 focus:bg-white/15 focus:ring-4 focus:ring-white/20"
+        whileFocus={{ scale: 1.002 }}
+        className="w-full resize-none rounded-xl border-0 bg-white/5 px-5 py-4 text-base text-white outline-none transition
+                   placeholder:text-white/40 focus:bg-white/10"
       />
     </label>
   );

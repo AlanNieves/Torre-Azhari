@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { MapPin, ArrowRight } from "lucide-react";
-import OptimizedImage from "@/components/ui/OptimizedImage";
+import OptimizedImage from "@/shared/ui/OptimizedImage";
 import type { Project } from "@/types/project";
 
 interface ProjectsGridProps {
