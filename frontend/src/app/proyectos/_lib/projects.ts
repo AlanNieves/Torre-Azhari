@@ -12,11 +12,11 @@ export const PROJECTS_DATA: Project[] = [
     description: 'Residencias verticales de lujo en una de las zonas más exclusivas de Aguascalientes. Torre Azhari combina arquitectura contemporánea con acabados premium y vistas panorámicas incomparables.',
     shortDescription: 'Residencias verticales de lujo en una de las zonas más exclusivas de Aguascalientes.',
     status: 'available',
-    coverImage: '/images/img40.jpg',
+    coverImage: '/images/img76.jpg',
     gallery: [
+      '/images/img76.jpg',
       '/images/img40.jpg',
       '/images/img41.jpg',
-      '/images/img42.jpg',
     ],
     features: [
       { icon: 'building', label: 'Niveles', value: '12 pisos' },
@@ -48,10 +48,10 @@ export const PROJECTS_DATA: Project[] = [
     description: 'Terrenos habitacionales en un entorno natural privilegiado, con plusvalía garantizada y planeación a largo plazo. AMARA ofrece la oportunidad perfecta para construir tu patrimonio.',
     shortDescription: 'Terrenos habitacionales en un entorno natural, con plusvalía y planeación a largo plazo.',
     status: 'available',
-    coverImage: '/images/img71.jpg',
+    coverImage: '/images/img43.jpg',
     gallery: [
-      '/images/img71.jpg',
-      '/images/img72.jpg',
+      '/images/img43.jpg',
+      '/images/img46.jpg',
     ],
     features: [
       { icon: 'map', label: 'Lotes desde', value: '200 m²' },
@@ -71,6 +71,36 @@ export const PROJECTS_DATA: Project[] = [
       title: 'AMARA | Terrenos Residenciales en Aguascalientes',
       description: 'Invierte en terrenos habitacionales con alta plusvalía. AMARA ofrece lotes premium en zona de crecimiento garantizado.',
       keywords: ['amara', 'terrenos aguascalientes', 'lotes residenciales', 'inversión inmobiliaria'],
+    },
+  },
+  {
+    id: 'proximos-desarrollos',
+    slug: 'proximos-desarrollos',
+    title: 'Próximos desarrollos',
+    subtitle: 'Nuevos proyectos en camino',
+    location: 'Aguascalientes, México',
+    description: 'Estamos trabajando en nuevos desarrollos que transformarán la forma de vivir en Aguascalientes. Mantente atento a nuestros próximos lanzamientos.',
+    shortDescription: 'Nuevos proyectos que transformarán la forma de vivir en Aguascalientes.',
+    status: 'coming-soon',
+    coverImage: '/images/img18.jpg',
+    gallery: [
+      '/images/img18.jpg',
+    ],
+    features: [
+      { icon: 'calendar', label: 'Lanzamiento', value: 'Próximamente' },
+      { icon: 'map', label: 'Ubicación', value: 'Zona premium' },
+      { icon: 'trending-up', label: 'Inversión', value: 'Oportunidad' },
+    ],
+    amenities: [
+      'Diseño innovador',
+      'Ubicación estratégica',
+      'Plusvalía garantizada',
+      'Financiamiento disponible',
+    ],
+    metadata: {
+      title: 'Próximos Desarrollos | Azhari',
+      description: 'Descubre los próximos proyectos de Azhari Desarrollos en Aguascalientes.',
+      keywords: ['próximos desarrollos', 'nuevos proyectos aguascalientes', 'azhari'],
     },
   },
 ];
