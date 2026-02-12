@@ -37,7 +37,11 @@ function sanitizePhone(v: string) {
   return s.replace(/[^\d+]/g, "").slice(0, 20);
 }
 
-export default function LeadForm() {
+type LeadFormProps = {
+  isCompact?: boolean;
+};
+
+export default function LeadForm({ isCompact = false }: LeadFormProps) {
   const [values, setValues] = useState<LeadFormValues>(initialValues);
   const [state, setState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
@@ -94,17 +98,8 @@ export default function LeadForm() {
     }
   }
 
-  return (
-    <div className="relative overflow-hidden bg-[#1e1e1e] px-6 py-16 sm:px-8 sm:py-24">
-      <div className="mx-auto max-w-2xl">
-        <h2 className="font-serif text-3xl tracking-tight text-white sm:text-4xl lg:text-[2.5rem]">
-          Conversemos sobre tu próxima inversión
-        </h2>
-        <p className="mt-4 text-base leading-relaxed text-white/70">
-          Si quieres conocer más sobre nuestros proyectos, recibir información personalizada o agendar una cita, déjanos tus datos y uno de nuestros asesores se pondrá en contacto contigo.
-        </p>
-
-        <form onSubmit={onSubmit} className="mt-8 grid gap-6">
+  const formContent = (
+    <form onSubmit={onSubmit} className="mt-8 grid gap-6">
           <Field
             label="NOMBRE"
             placeholder="Escribe aquí..."
@@ -210,6 +205,22 @@ export default function LeadForm() {
             Al enviar este formulario, acepta que almacenemos sus datos para gestionar su consulta.
           </p>
         </form>
+  );
+
+  if (isCompact) {
+    return formContent;
+  }
+
+  return (
+    <div className="relative overflow-hidden bg-[#1e1e1e] px-6 py-16 sm:px-8 sm:py-24">
+      <div className="mx-auto max-w-2xl">
+        <h2 className="font-serif text-3xl tracking-tight text-white sm:text-4xl lg:text-[2.5rem]">
+          Conversemos sobre tu próxima inversión
+        </h2>
+        <p className="mt-4 text-base leading-relaxed text-white/70">
+          Si quieres conocer más sobre nuestros proyectos, recibir información personalizada o agendar una cita, déjanos tus datos y uno de nuestros asesores se pondrá en contacto contigo.
+        </p>
+        {formContent}
       </div>
     </div>
   );
