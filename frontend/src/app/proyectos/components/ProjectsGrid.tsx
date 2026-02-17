@@ -65,7 +65,13 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                 {/* CTA */}
                 {project.status !== 'sold-out' && (
                   <Link
-                    href={project.status === 'coming-soon' ? '#contacto' : `/proyectos/${project.slug}`}
+                    href={
+                      project.status === 'coming-soon'
+                        ? '#contacto'
+                        : project.slug === 'amara'
+                          ? '/proyectos/proyectoAmara'
+                          : `/proyectos/${project.slug}`
+                    }
                     className="group/btn inline-flex w-fit items-center gap-2 rounded-full border-2 border-white bg-white px-8 py-3.5 text-sm font-semibold text-[#1e1e1e] transition-all hover:bg-transparent hover:text-white"
                   >
                     Ver proyecto

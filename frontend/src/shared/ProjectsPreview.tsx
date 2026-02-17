@@ -20,7 +20,7 @@ const PROJECTS = [
     location: "Aguascalientes, México.",
     description: "Terrenos habitacionales en un entorno natural, con plusvalía y planeación a largo plazo.",
     image: "/images/img71.jpg",
-    link: "/proyectos/amara",
+    link: "/proyectos/proyectoAmara",
     linkText: "Conocer proyecto",
   },
   {

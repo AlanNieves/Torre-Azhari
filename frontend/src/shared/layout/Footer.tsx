@@ -102,7 +102,6 @@ export default function Footer() {
                 contacto@azharidesarrollos.com
               </a>
               <a
-                href="tel:+524491234567"
                 className="block transition-colors hover:text-white"
               >
                 +52 449 123 4567

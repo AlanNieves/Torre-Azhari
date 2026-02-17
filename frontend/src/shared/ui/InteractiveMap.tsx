@@ -22,8 +22,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
 
 interface InteractiveMapProps {
   /** Latitud de la ubicación del proyecto */
@@ -54,41 +52,43 @@ export default function InteractiveMap({
     // Prevenir múltiples instancias del mapa
     if (mapInstanceRef.current) return;
 
-    /**
-     * Inicialización del mapa
-     * - setView: Centra el mapa en las coordenadas especificadas
-     * - zoom: Nivel de acercamiento inicial
-     * - zoomControl: false para agregar controles personalizados después
-     */
-    const map = L.map(mapRef.current, {
-      center: [lat, lng],
-      zoom: zoom,
-      zoomControl: true, // Controles de zoom (+/-)
-      scrollWheelZoom: true, // Zoom con scroll del mouse
-      dragging: true, // Permite arrastrar el mapa
-      touchZoom: true, // Zoom táctil en móviles
-    });
+    // Cargar Leaflet dinámicamente
+    const initializeMap = async () => {
+      try {
+        // Import dinámico de Leaflet
+        const L = await import("leaflet");
+        await import("leaflet/dist/leaflet.css");
 
-    /**
-     * Capa de tiles (mosaicos del mapa)
-     * OpenStreetMap proporciona tiles gratuitos
-     * 
-     * Alternativas de tiles:
-     * - CartoDB Positron (claro y minimalista)
-     * - CartoDB Dark Matter (oscuro)
-     * - Stamen Toner (blanco y negro)
-     */
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      maxZoom: 19,
-      minZoom: 3,
-    }).addTo(map);
+        /**
+         * Inicialización del mapa
+         * - setView: Centra el mapa en las coordenadas especificadas
+         * - zoom: Nivel de acercamiento inicial
+         * - zoomControl: false para agregar controles personalizados después
+         */
+        const map = L.default.map(mapRef.current!, {
+          center: [lat, lng],
+          zoom: zoom,
+          zoomControl: true, // Controles de zoom (+/-)
+          scrollWheelZoom: true, // Zoom con scroll del mouse
+          dragging: true, // Permite arrastrar el mapa
+          touchZoom: true, // Zoom táctil en móviles
+        });
 
-    /**
-     * Icono personalizado para el marcador
-     * Reemplaza el pin azul predeterminado con uno personalizado
-     */
-    const customIcon = L.divIcon({
+        /**
+         * Capa de tiles (mosaicos del mapa)
+         * OpenStreetMap proporciona tiles gratuitos
+         */
+        L.default.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          maxZoom: 19,
+          minZoom: 3,
+        }).addTo(map);
+
+        /**
+         * Icono personalizado para el marcador
+         * Reemplaza el pin azul predeterminado con uno personalizado
+         */
+        const customIcon = L.default.divIcon({
       className: "custom-map-marker",
       html: `
         <div style="
@@ -135,31 +135,40 @@ export default function InteractiveMap({
       iconAnchor: [20, 20], // Punto de anclaje (centro del icono)
     });
 
-    /**
-     * Agregar marcador al mapa
-     * bindPopup: Popup que aparece al hacer click en el marcador
-     * 
-     * Información del proyecto:
-     * - Nombre: Torre Azhari
-     * - Dirección: Luis Donaldo Colosio 123 int. 4
-     * - Colonia: Jardines de la Concepción 2da Sección
-     * - CP: 20120, Aguascalientes
-     */
-    const marker = L.marker([lat, lng], { icon: customIcon })
+        /**
+         * Agregar marcador al mapa
+         * bindPopup: Popup que aparece al hacer click en el marcador
+         * 
+         * Información del proyecto:
+         * - Nombre: Torre Azhari
+         * - Dirección: Luis Donaldo Colosio 123 int. 4
+         * - Colonia: Jardines de la Concepción 2da Sección
+         * - CP: 20120, Aguascalientes
+         */
+        const marker = L.default.marker([lat, lng], { icon: customIcon })
       .addTo(map)
-      .bindPopup(`
-        <div style="font-family: Inter, sans-serif; padding: 4px;">
-          <strong style="color: #18181b; font-size: 14px;">Torre Azhari</strong>
-          <p style="color: #52525b; font-size: 12px; margin: 4px 0 0 0;">
-            Luis Donaldo Colosio 123 int. 4<br/>
-            Jardines de la Concepción 2da Secc.<br/>
-            Aguascalientes, Ags. 20120
-          </p>
-        </div>
-      `);
+          .addTo(map)
+          .bindPopup(`
+            <div style="font-family: Inter, sans-serif; padding: 4px;">
+              <strong style="color: #18181b; font-size: 14px;">Torre Azhari</strong>
+              <p style="color: #52525b; font-size: 12px; margin: 4px 0 0 0;">
+                Luis Donaldo Colosio 123 int. 4<br/>
+                Jardines de la Concepción 2da Secc.<br/>
+                Aguascalientes, Ags. 20120
+              </p>
+            </div>
+          `);
 
-    // Guardar instancia del mapa
-    mapInstanceRef.current = map;
+        // Guardar instancia del mapa
+        mapInstanceRef.current = map;
+
+      } catch (error) {
+        console.error("Error loading map:", error);
+      }
+    };
+
+    // Inicializar el mapa
+    initializeMap();
 
     /**
      * Cleanup: Destruir el mapa al desmontar el componente
