@@ -91,7 +91,7 @@ export default function LeadForm({ isCompact = false }: LeadFormProps) {
       await createLead(payload);
       setState("success");
       setValues(initialValues);
-      window.setTimeout(() => setState("idle"), 3500);
+      window.setTimeout(() => setState("idle"), 5000); // Aumentamos el tiempo a 5 segundos
     } catch (err: any) {
       setState("error");
       setErrorMsg(err?.message || "No pudimos enviar tu solicitud. Intenta nuevamente.");
@@ -176,14 +176,25 @@ export default function LeadForm({ isCompact = false }: LeadFormProps) {
 
             <AnimatePresence>
               {state === "success" && (
-                <motion.p
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  className="text-sm font-medium text-white"
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.9, y: -10 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="flex items-center gap-2 rounded-full bg-green-600/90 px-4 py-2 shadow-lg"
                 >
-                  ✓ Recibido. Te contactaremos pronto.
-                </motion.p>
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2, type: "spring", stiffness: 500 }}
+                    className="text-white text-lg"
+                  >
+                    ✓
+                  </motion.span>
+                  <span className="text-sm font-semibold text-white">
+                    ¡Mensaje enviado exitosamente!
+                  </span>
+                </motion.div>
               )}
             </AnimatePresence>
           </div>
@@ -198,6 +209,49 @@ export default function LeadForm({ isCompact = false }: LeadFormProps) {
               >
                 {errorMsg}
               </motion.p>
+            )}
+          </AnimatePresence>
+
+          <AnimatePresence>
+            {state === "success" && (
+              <motion.div
+                initial={{ opacity: 0, y: 10, height: 0 }}
+                animate={{ opacity: 1, y: 0, height: "auto" }}
+                exit={{ opacity: 0, y: -10, height: 0 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="overflow-hidden rounded-xl bg-green-600/10 border border-green-500/20 px-6 py-4"
+              >
+                <div className="flex items-start gap-3">
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                    className="flex-shrink-0 rounded-full bg-green-600 p-1"
+                  >
+                    <svg className="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </motion.div>
+                  <div className="flex-1">
+                    <motion.h4 
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="text-sm font-semibold text-green-100"
+                    >
+                      ¡Tu solicitud ha sido enviada exitosamente!
+                    </motion.h4>
+                    <motion.p 
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.4 }}
+                      className="mt-1 text-sm text-green-200/80 leading-relaxed"
+                    >
+                      Hemos recibido tu información correctamente. Uno de nuestros asesores especializados se pondrá en contacto contigo en las próximas 24 horas para brindarte información personalizada sobre nuestros proyectos.
+                    </motion.p>
+                  </div>
+                </div>
+              </motion.div>
             )}
           </AnimatePresence>
 
