@@ -59,36 +59,37 @@ export default function ProjectsPreview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group overflow-hidden rounded-2xl bg-[#2a2a2a]"
             >
-              {/* Image */}
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="mb-2 font-serif text-2xl font-light text-white">
-                  {project.title}
-                </h3>
-                <div className="mb-4 flex items-center gap-2 text-gray-400">
-                  <MapPin size={16} />
-                  <span className="text-sm">{project.location}</span>
+              <Link
+                href={project.link}
+                className="group block h-full overflow-hidden rounded-2xl bg-[#2a2a2a] transition-all duration-300 hover:bg-[#333333] hover:shadow-2xl hover:shadow-black/30 hover:-translate-y-2"
+              >
+                {/* Image */}
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
                 </div>
-                <p className="mb-6 text-sm leading-relaxed text-gray-400">
-                  {project.description}
-                </p>
-                <Link
-                  href={project.link}
-                  className="inline-block text-sm font-light text-white underline transition-opacity hover:opacity-70"
-                >
-                  {project.linkText}
-                </Link>
-              </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="mb-2 font-serif text-2xl font-light text-white transition-colors group-hover:text-white/90">
+                    {project.title}
+                  </h3>
+                  <div className="mb-4 flex items-center gap-2 text-gray-400 transition-colors group-hover:text-gray-300">
+                    <MapPin size={16} />
+                    <span className="text-sm">{project.location}</span>
+                  </div>
+                  <p className="mb-6 text-sm leading-relaxed text-gray-400 transition-colors group-hover:text-gray-300">
+                    {project.description}
+                  </p>
+                  <span className="inline-block text-sm font-light text-white transition-all group-hover:text-white/90">
+                    {project.linkText}
+                  </span>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>
