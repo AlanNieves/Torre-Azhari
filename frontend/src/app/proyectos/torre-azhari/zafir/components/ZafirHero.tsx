@@ -50,12 +50,12 @@ export default function ZafirHero() {
             >
               Solicitar información
             </Link>
-            <Link
-              href="#especificaciones"
+            <button
+              onClick={() => document.getElementById('especificaciones')?.scrollIntoView({ behavior: 'smooth' })}
               className="rounded-full border border-white/20 px-8 py-3.5 text-sm font-medium text-white/80 transition-all hover:border-white/40 hover:text-white"
             >
               Ver especificaciones
-            </Link>
+            </button>
           </motion.div>
         </motion.div>
       </div>
@@ -83,8 +83,8 @@ export default function ZafirHero() {
           transition={{ delay: 1.2, duration: 0.6 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
-          <Link
-            href="#especificaciones"
+          <button
+            onClick={() => document.getElementById('especificaciones')?.scrollIntoView({ behavior: 'smooth' })}
             className="flex flex-col items-center gap-2 text-white/60 transition-colors hover:text-white"
           >
             <span className="text-xs font-medium uppercase tracking-widest">Explorar</span>
@@ -94,7 +94,7 @@ export default function ZafirHero() {
             >
               <ArrowDown size={18} />
             </motion.div>
-          </Link>
+          </button>
         </motion.div>
       </motion.div>
     </section>
