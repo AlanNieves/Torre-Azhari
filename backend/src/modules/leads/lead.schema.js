@@ -5,8 +5,9 @@ const {
   sanitizeEmail,
   sanitizePhone,
 } = require("../../utils/sanitize");
+const { containsMaliciousContent } = require("../../utils/security");
 
-const SOURCE_WHITELIST = ["web", "ig", "ads", "meta", "google", "landing"];
+const SOURCE_WHITELIST = ["web", "ig", "ads", "meta", "google", "landing", "torre-azhari-web"];
 
 const LeadCreateSchema = z
   .object({
