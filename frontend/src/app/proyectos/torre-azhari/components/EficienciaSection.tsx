@@ -110,22 +110,6 @@ export default function EficienciaSection() {
           </motion.div>
         </div>
 
-        {/* Bottom Contact Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-20 text-center"
-        >
-          <h3 className="mb-8 font-serif text-2xl font-light text-white lg:text-3xl">
-            Conversemos sobre tu próxima inversión
-          </h3>
-          <p className="mb-8 text-base text-white/70">
-            Agenda una cita donde te brindaremos toda la información personalizada sobre el proyecto y 
-            te orientaremos para que tu futura inversión genere el mayor de los beneficios.
-          </p>
-        </motion.div>
       </div>
     </section>
   );

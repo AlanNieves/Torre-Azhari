@@ -3,13 +3,14 @@ const { sendLeadNotification } = require("../../utils/mailer");
 
 async function registerLead(req, res, next) {
   try {
-    const { name, email, phone, interest, source } = req.validatedBody;
+    const { name, email, phone, interest, message, source } = req.validatedBody;
 
     const lead = await createLead({
       name,
       email,
       phone,
       interest,
+      message,
       source,
     });
 

@@ -35,6 +35,7 @@ exports.sendLeadNotification = async (lead) => {  // Exporta función para notif
       `Email: ${lead.email}\n` +
       `Teléfono: ${lead.phone}\n` +
       `Interés: ${lead.interest}\n` +
+      `Mensaje: ${lead.message || '(sin mensaje)'}\n` +
       `Fuente: ${lead.source}\n` +
       `Fecha: ${new Date().toISOString()}\n`,
   });

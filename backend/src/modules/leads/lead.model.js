@@ -29,6 +29,12 @@ const LeadSchema = new mongoose.Schema(
       maxlength: 120,
     },
 
+    message: {
+      type: String,
+      default: "",
+      maxlength: 800,
+    },
+
     source: {
       type: String,
       default: "web",
