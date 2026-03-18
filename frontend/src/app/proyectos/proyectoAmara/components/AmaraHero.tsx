@@ -47,7 +47,7 @@ export default function AmaraHero() {
       >
         <div className="relative aspect-[21/9] w-full overflow-hidden">
           <Image
-            src="/images/img71.jpg"
+            src="/images/gallery/img71.jpg"
             alt="AMARA - Desarrollo habitacional Aguascalientes"
             fill
             priority
@@ -61,3 +61,4 @@ export default function AmaraHero() {
     </section>
   );
 }
+

@@ -12,11 +12,11 @@ export const PROJECTS_DATA: Project[] = [
     description: 'Residencias verticales de lujo en una de las zonas más exclusivas de Aguascalientes. Torre Azhari combina arquitectura contemporánea con acabados premium y vistas panorámicas incomparables.',
     shortDescription: 'Residencias verticales de lujo en una de las zonas más exclusivas de Aguascalientes.',
     status: 'available',
-    coverImage: '/images/img76.jpg',
+    coverImage: '/images/gallery/img76.jpg',
     gallery: [
-      '/images/img76.jpg',
-      '/images/img40.jpg',
-      '/images/img41.jpg',
+      '/images/gallery/img76.jpg',
+      '/images/gallery/img40.jpg',
+      '/images/gallery/img41.jpg',
     ],
     features: [
       { icon: 'building', label: 'Niveles', value: '12 pisos' },
@@ -48,10 +48,10 @@ export const PROJECTS_DATA: Project[] = [
     description: 'Terrenos habitacionales en un entorno natural privilegiado, con plusvalía garantizada y planeación a largo plazo. AMARA ofrece la oportunidad perfecta para construir tu patrimonio.',
     shortDescription: 'Terrenos habitacionales en un entorno natural, con plusvalía y planeación a largo plazo.',
     status: 'available',
-    coverImage: '/images/img43.jpg',
+    coverImage: '/images/gallery/img43.jpg',
     gallery: [
-      '/images/img43.jpg',
-      '/images/img46.jpg',
+      '/images/gallery/img43.jpg',
+      '/images/gallery/img46.jpg',
     ],
     features: [
       { icon: 'map', label: 'Lotes desde', value: '200 m²' },
@@ -82,9 +82,9 @@ export const PROJECTS_DATA: Project[] = [
     description: 'Estamos trabajando en nuevos desarrollos que transformarán la forma de vivir en Aguascalientes. Mantente atento a nuestros próximos lanzamientos.',
     shortDescription: 'Nuevos proyectos que transformarán la forma de vivir en Aguascalientes.',
     status: 'coming-soon',
-    coverImage: '/images/img18.jpg',
+    coverImage: '/images/gallery/img18.jpg',
     gallery: [
-      '/images/img18.jpg',
+      '/images/gallery/img18.jpg',
     ],
     features: [
       { icon: 'calendar', label: 'Lanzamiento', value: 'Próximamente' },
@@ -117,3 +117,4 @@ export function getFeaturedProjects(limit?: number): Project[] {
   const projects = PROJECTS_DATA.filter((p) => p.status === 'available');
   return limit ? projects.slice(0, limit) : projects;
 }
+

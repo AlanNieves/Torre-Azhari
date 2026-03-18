@@ -46,7 +46,7 @@ export default function TorreAzhariHero() {
       >
         <div className="relative aspect-[21/9] w-full overflow-hidden rounded-xl">
           <Image
-            src="/images/img123.jpg"
+            src="/images/gallery/img123.jpg"
             alt="Torre Azhari Exterior"
             fill
             className="object-cover"
@@ -57,3 +57,4 @@ export default function TorreAzhariHero() {
     </section>
   );
 }
+

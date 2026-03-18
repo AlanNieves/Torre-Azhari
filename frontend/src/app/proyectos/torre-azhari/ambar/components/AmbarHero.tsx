@@ -64,7 +64,7 @@ export default function AmbarHero() {
         className="relative mt-12 aspect-[16/7] w-full overflow-hidden lg:mt-16"
       >
         <Image
-          src="/images/img117.jpg"
+          src="/images/gallery/img117.jpg"
           alt="Departamento Ambar — diseño contemporáneo con acabados de lujo"
           fill
           className="object-cover"
@@ -95,3 +95,4 @@ export default function AmbarHero() {
     </section>
   );
 }
+

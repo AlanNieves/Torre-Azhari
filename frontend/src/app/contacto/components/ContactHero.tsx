@@ -11,7 +11,7 @@ export default function ContactHero() {
         <div
           className="h-full w-full bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('/images/img147.jpg')",
+            backgroundImage: "url('/images/gallery/img147.jpg')",
           }}
         >
           {/* Overlay oscuro para mejorar la legibilidad */}
@@ -46,3 +46,4 @@ export default function ContactHero() {
     </section>
   );
 }
+

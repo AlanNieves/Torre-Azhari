@@ -54,3 +54,4 @@ export function buildMetadata(args: BuildMetaArgs): Metadata {
     },
   };
 }
+

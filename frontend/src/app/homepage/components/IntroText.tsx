@@ -47,3 +47,4 @@ export default function IntroText() {
     </section>
   );
 }
+

@@ -64,7 +64,7 @@ export default function OpalHero() {
         className="relative mt-12 aspect-[16/7] w-full overflow-hidden lg:mt-16"
       >
         <Image
-          src="/images/img114.jpg"
+          src="/images/gallery/img114.jpg"
           alt="Departamento Opal — vistas y confort en el corazón de la torre"
           fill
           className="object-cover"
@@ -95,3 +95,4 @@ export default function OpalHero() {
     </section>
   );
 }
+

@@ -7,8 +7,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
   { src: "/images/designs/08CENTROSURORIENTEOnix.png", alt: "Planta arquitectónica Onix", tag: "Planta" },
-  { src: "/images/img120.jpg", alt: "Vista interior Onix", tag: "Interior" },
-  { src: "/images/img114.jpg", alt: "Recámara principal Onix", tag: "Recámara" },
+  { src: "/images/gallery/img120.jpg", alt: "Vista interior Onix", tag: "Interior" },
+  { src: "/images/gallery/img114.jpg", alt: "Recámara principal Onix", tag: "Recámara" },
 ];
 
 export default function OnixGallery() {
@@ -90,3 +90,4 @@ export default function OnixGallery() {
     </section>
   );
 }
+

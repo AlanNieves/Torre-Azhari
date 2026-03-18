@@ -29,3 +29,4 @@ export default function AmatistaFloatingCTA() {
     </motion.div>
   );
 }
+

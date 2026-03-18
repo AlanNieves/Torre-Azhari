@@ -10,7 +10,7 @@ const investmentReasons = [
     subtitle: "El valor no es casualidad, se diseña",
     description:
       "La plusvalía no ocurre sola. Se crea desde la selección del terreno, el diseño del proyecto, el tipo de desarrollo y su integración con el entorno. En Azhari, cada decisión responde a una lógica de crecimiento sostenido.",
-    image: "/images/img197.jpg",
+    image: "/images/gallery/img197.jpg",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const investmentReasons = [
     subtitle: "Estrategias que se ajustan a distintos perfiles",
     description:
       "Azhari ofrece proyectos que permiten diferentes formas de inversión, desde terrenos hasta desarrollos verticales, facilitando esquemas accesibles y bien estructurados que permiten invertir sin comprometer tu estabilidad financiera",
-    image: "/images/img200.jpg",
+    image: "/images/gallery/img200.jpg",
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ const investmentReasons = [
     subtitle: "Invertir con respaldo hace la diferencia",
     description:
       "Trabajamos con procesos claros, información transparente y un acompañamiento cercano. Sabemos que la confianza es clave en cualquier inversión, y por eso cuidamos cada detalle del proceso. Cuando inviertes con Azhari, sabes dónde estás invirtiendo.",
-    image: "/images/img203.jpg",
+    image: "/images/gallery/img203.jpg",
   },
 ];
 
@@ -90,3 +90,4 @@ export default function WhyInvest() {
     </section>
   );
 }
+

@@ -29,3 +29,4 @@ export default function NurFloatingCTA() {
     </motion.div>
   );
 }
+

@@ -70,3 +70,4 @@ export default function WhyAzhari() {
     </section>
   );
 }
+

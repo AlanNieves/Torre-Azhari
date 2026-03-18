@@ -7,8 +7,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
   { src: "/images/designs/02CENTRONORORIENTE1-sati.png", alt: "Planta arquitectónica Sati", tag: "Planta" },
-  { src: "/images/img120.jpg", alt: "Vista interior", tag: "Interior" },
-  { src: "/images/img114.jpg", alt: "Recámara principal", tag: "Recámara" },
+  { src: "/images/gallery/img120.jpg", alt: "Vista interior", tag: "Interior" },
+  { src: "/images/gallery/img114.jpg", alt: "Recámara principal", tag: "Recámara" },
 ];
 
 export default function SatiGallery() {
@@ -92,3 +92,4 @@ export default function SatiGallery() {
     </section>
   );
 }
+

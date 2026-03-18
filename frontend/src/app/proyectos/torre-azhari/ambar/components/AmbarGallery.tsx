@@ -7,8 +7,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
   { src: "/images/designs/05SURPONIENTEambar.png", alt: "Ambar — Planta", tag: "Planta" },
-  { src: "/images/img114.jpg", alt: "Ambar — Recámara", tag: "Recámara" },
-  { src: "/images/img120.jpg", alt: "Ambar — Interior", tag: "Interior" },
+  { src: "/images/gallery/img114.jpg", alt: "Ambar — Recámara", tag: "Recámara" },
+  { src: "/images/gallery/img120.jpg", alt: "Ambar — Interior", tag: "Interior" },
 ];
 
 export default function AmbarGallery() {
@@ -74,3 +74,4 @@ export default function AmbarGallery() {
     </section>
   );
 }
+

@@ -20,7 +20,7 @@ export default function ZafirCard() {
         {/* Image */}
         <div className="aspect-[4/3] overflow-hidden">
           <Image
-            src="/images/img40.jpg"
+            src="/images/gallery/img40.jpg"
             alt="Departamento Zafir"
             width={400}
             height={300}
@@ -46,3 +46,4 @@ export default function ZafirCard() {
     </motion.div>
   );
 }
+

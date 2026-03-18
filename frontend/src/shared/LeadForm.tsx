@@ -340,3 +340,4 @@ function Spinner() {
     <span className="inline-flex h-4 w-4 animate-spin rounded-full border-2 border-[#2A2520] border-t-white" />
   );
 }
+

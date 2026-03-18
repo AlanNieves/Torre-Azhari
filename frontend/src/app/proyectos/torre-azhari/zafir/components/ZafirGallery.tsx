@@ -6,9 +6,9 @@ import { useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
-  { src: "/images/img114.jpg", alt: "Recámara principal", tag: "Recámara" },
-  { src: "/images/img117.jpg", alt: "Sala de estar", tag: "Sala" },
-  { src: "/images/img120.jpg", alt: "Vista interior", tag: "Interior" },
+  { src: "/images/gallery/img114.jpg", alt: "Recámara principal", tag: "Recámara" },
+  { src: "/images/gallery/img117.jpg", alt: "Sala de estar", tag: "Sala" },
+  { src: "/images/gallery/img120.jpg", alt: "Vista interior", tag: "Interior" },
 ];
 
 export default function ZafirGallery() {
@@ -128,3 +128,4 @@ export default function ZafirGallery() {
     </section>
   );
 }
+

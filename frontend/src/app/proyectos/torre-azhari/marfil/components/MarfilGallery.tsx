@@ -7,8 +7,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
   { src: "/images/designs/06SURORIENTEmarfil.png", alt: "Marfil — Planta", tag: "Planta" },
-  { src: "/images/img117.jpg", alt: "Marfil — Sala", tag: "Sala" },
-  { src: "/images/img114.jpg", alt: "Marfil — Recámara", tag: "Recámara" },
+  { src: "/images/gallery/img117.jpg", alt: "Marfil — Sala", tag: "Sala" },
+  { src: "/images/gallery/img114.jpg", alt: "Marfil — Recámara", tag: "Recámara" },
 ];
 
 export default function MarfilGallery() {
@@ -74,3 +74,4 @@ export default function MarfilGallery() {
     </section>
   );
 }
+

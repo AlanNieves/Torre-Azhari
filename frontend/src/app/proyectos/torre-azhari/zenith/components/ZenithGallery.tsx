@@ -7,8 +7,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
   { src: "/images/designs/PHSURPONIENTE-zenith1.png", alt: "Planta arquitectónica Zenith", tag: "Planta" },
-  { src: "/images/img120.jpg", alt: "Vista interior Zenith", tag: "Interior" },
-  { src: "/images/img114.jpg", alt: "Terraza panorámica Zenith", tag: "Terraza" },
+  { src: "/images/gallery/img120.jpg", alt: "Vista interior Zenith", tag: "Interior" },
+  { src: "/images/gallery/img114.jpg", alt: "Terraza panorámica Zenith", tag: "Terraza" },
 ];
 
 export default function ZenithGallery() {
@@ -90,3 +90,4 @@ export default function ZenithGallery() {
     </section>
   );
 }
+

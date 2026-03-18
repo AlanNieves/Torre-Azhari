@@ -64,7 +64,7 @@ export default function NurHero() {
         className="relative mt-12 aspect-[16/7] w-full overflow-hidden lg:mt-16"
       >
         <Image
-          src="/images/img120.jpg"
+          src="/images/gallery/img120.jpg"
           alt="Departamento Nur — espacios amplios con acabados premium"
           fill
           className="object-cover"
@@ -95,3 +95,4 @@ export default function NurHero() {
     </section>
   );
 }
+

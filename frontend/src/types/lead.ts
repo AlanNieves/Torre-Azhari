@@ -10,3 +10,4 @@ export type CreateLeadPayload = {
 export type LeadApiResponse =
   | { ok: true }
   | { ok?: false; message?: string; error?: string };
+

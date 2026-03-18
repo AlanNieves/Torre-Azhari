@@ -22,3 +22,4 @@ export const API = {
   // si quieres apuntar directo al backend externo, pon NEXT_PUBLIC_LEADS_ENDPOINT en .env.local
   leadsEndpoint: process.env.NEXT_PUBLIC_LEADS_ENDPOINT || "/api/leads",
 } as const;
+

@@ -7,8 +7,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
   { src: "/images/designs/03NORPONIENTEDEFnur.png", alt: "Planta arquitectónica Nur", tag: "Planta" },
-  { src: "/images/img114.jpg", alt: "Recámara principal", tag: "Recámara" },
-  { src: "/images/img117.jpg", alt: "Sala de estar", tag: "Sala" },
+  { src: "/images/gallery/img114.jpg", alt: "Recámara principal", tag: "Recámara" },
+  { src: "/images/gallery/img117.jpg", alt: "Sala de estar", tag: "Sala" },
 ];
 
 export default function NurGallery() {
@@ -74,3 +74,4 @@ export default function NurGallery() {
     </section>
   );
 }
+

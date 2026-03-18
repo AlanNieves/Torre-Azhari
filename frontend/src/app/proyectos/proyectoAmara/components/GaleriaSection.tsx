@@ -7,15 +7,15 @@ import Image from "next/image";
 
 const galleryImages = [
   {
-    src: "/images/img177.jpg",
+    src: "/images/gallery/img177.jpg",
     alt: "AMARA - Vista principal del desarrollo",
   },
   {
-    src: "/images/img174.jpg",
+    src: "/images/gallery/img174.jpg",
     alt: "AMARA - Áreas verdes y parques",
   },
   {
-    src: "/images/img18.jpg",
+    src: "/images/gallery/img18.jpg",
     alt: "AMARA -",
   },
 ];
@@ -145,3 +145,4 @@ export default function GaleriaSection() {
     </section>
   );
 }
+

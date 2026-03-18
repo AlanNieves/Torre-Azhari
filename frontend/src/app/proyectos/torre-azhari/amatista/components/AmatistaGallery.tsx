@@ -7,8 +7,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
   { src: "/images/designs/04NORORIENTE-amatista.png", alt: "Amatista — Planta", tag: "Planta" },
-  { src: "/images/img117.jpg", alt: "Amatista — Sala", tag: "Sala" },
-  { src: "/images/img120.jpg", alt: "Amatista — Interior", tag: "Interior" },
+  { src: "/images/gallery/img117.jpg", alt: "Amatista — Sala", tag: "Sala" },
+  { src: "/images/gallery/img120.jpg", alt: "Amatista — Interior", tag: "Interior" },
 ];
 
 export default function AmatistaGallery() {
@@ -74,3 +74,4 @@ export default function AmatistaGallery() {
     </section>
   );
 }
+

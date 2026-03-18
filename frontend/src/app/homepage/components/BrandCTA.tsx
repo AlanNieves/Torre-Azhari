@@ -10,7 +10,7 @@ export default function BrandCTA() {
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/images/img49.jpg')",
+          backgroundImage: "url('/images/gallery/img49.jpg')",
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/50 to-black/20" />
@@ -57,3 +57,4 @@ export default function BrandCTA() {
     </section>
   );
 }
+

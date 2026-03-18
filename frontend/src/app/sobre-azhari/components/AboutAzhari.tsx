@@ -64,7 +64,7 @@ export default function AboutAzhari() {
             className="overflow-hidden rounded-2xl"
           >
             <img
-              src="/images/img182.jpg"
+              src="/images/gallery/img182.jpg"
               alt="Torre Azhari"
               className="h-[400px] w-full object-cover lg:h-[500px]"
             />
@@ -147,3 +147,4 @@ export default function AboutAzhari() {
     </>
   );
 }
+

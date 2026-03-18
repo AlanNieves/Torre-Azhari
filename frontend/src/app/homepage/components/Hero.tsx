@@ -9,7 +9,7 @@ export default function Hero() {
     <section className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-gray-900 pt-20">
       {/* Background Image - Optimizado con Next.js Image */}
       <Image
-        src="/images/img18.jpg"
+        src="/images/gallery/img18.jpg"
         alt="Azhari Desarrollos - Residencias de lujo"
         fill
         priority
@@ -62,3 +62,4 @@ export default function Hero() {
     </section>
   );
 }
+

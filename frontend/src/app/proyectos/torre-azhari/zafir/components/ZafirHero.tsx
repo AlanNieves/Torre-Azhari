@@ -68,7 +68,7 @@ export default function ZafirHero() {
         className="relative mt-12 aspect-[16/7] w-full overflow-hidden lg:mt-16"
       >
         <Image
-          src="/images/img114.jpg"
+          src="/images/gallery/img114.jpg"
           alt="Departamento Zafir — recámara principal con acabados premium"
           fill
           className="object-cover"
@@ -100,3 +100,4 @@ export default function ZafirHero() {
     </section>
   );
 }
+

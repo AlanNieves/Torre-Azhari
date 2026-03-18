@@ -66,3 +66,4 @@ export interface ProjectsFilter {
   maxPrice?: number;
   search?: string;
 }
+

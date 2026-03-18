@@ -10,7 +10,7 @@ const PROJECTS = [
     title: "Torre Azhari",
     location: "Aguascalientes, México.",
     description: "Residencias verticales de lujo en una de las zonas más exclusivas de Aguascalientes.",
-    image: "/images/img40.jpg",
+    image: "/images/gallery/img40.jpg",
     link: "/proyectos/torre-azhari",
     linkText: "Conocer proyecto",
   },
@@ -19,7 +19,7 @@ const PROJECTS = [
     title: "AMARA",
     location: "Aguascalientes, México.",
     description: "Terrenos habitacionales en un entorno natural, con plusvalía y planeación a largo plazo.",
-    image: "/images/img71.jpg",
+    image: "/images/gallery/img71.jpg",
     link: "/proyectos/proyectoAmara",
     linkText: "Conocer proyecto",
   },
@@ -28,7 +28,7 @@ const PROJECTS = [
     title: "Próximos desarrollos",
     location: "Aguascalientes, México.",
     description: "Nuevos proyectos en planeación, pensados para quienes buscan invertir con visión.",
-    image: "/images/img43.jpg",
+    image: "/images/gallery/img43.jpg",
     link: "/proyectos",
     linkText: "Próximamente",
   },
@@ -97,3 +97,4 @@ export default function ProjectsPreview() {
     </section>
   );
 }
+

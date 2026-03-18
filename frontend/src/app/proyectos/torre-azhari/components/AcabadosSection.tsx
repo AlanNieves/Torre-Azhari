@@ -51,7 +51,7 @@ export default function AcabadosSection() {
           >
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
               <Image
-                src="/images/img40.jpg"
+                src="/images/gallery/img40.jpg"
                 alt="Acabados de lujo"
                 fill
                 className="object-cover"
@@ -84,3 +84,4 @@ export default function AcabadosSection() {
     </section>
   );
 }
+

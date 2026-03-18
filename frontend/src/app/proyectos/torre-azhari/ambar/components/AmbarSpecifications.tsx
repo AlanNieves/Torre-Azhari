@@ -112,3 +112,4 @@ export default function AmbarSpecifications() {
     </section>
   );
 }
+

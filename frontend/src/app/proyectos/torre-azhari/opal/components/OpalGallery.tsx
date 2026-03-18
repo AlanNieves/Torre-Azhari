@@ -7,8 +7,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
   { src: "/images/designs/07CENTROSURPONIENTEopal.png", alt: "Opal — Planta", tag: "Planta" },
-  { src: "/images/img120.jpg", alt: "Opal — Interior", tag: "Interior" },
-  { src: "/images/img117.jpg", alt: "Opal — Sala", tag: "Sala" },
+  { src: "/images/gallery/img120.jpg", alt: "Opal — Interior", tag: "Interior" },
+  { src: "/images/gallery/img117.jpg", alt: "Opal — Sala", tag: "Sala" },
 ];
 
 export default function OpalGallery() {
@@ -74,3 +74,4 @@ export default function OpalGallery() {
     </section>
   );
 }
+
