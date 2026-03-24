@@ -67,6 +67,7 @@ export default function MarfilHero() {
           src="/images/gallery/img120.jpg"
           alt="Departamento Marfil — elegancia y confort en cada espacio"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />

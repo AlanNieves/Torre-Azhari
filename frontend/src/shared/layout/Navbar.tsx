@@ -19,7 +19,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const unsubscribe = scrollY.onChange((latest) => {
+    const unsubscribe = scrollY.on("change", (latest) => {
       setIsScrolled(latest > 50);
     });
     return () => unsubscribe();
@@ -39,9 +39,11 @@ export default function Navbar() {
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-12">
         {/* Logo con imagen y texto */}
         <Link href="/" className="flex items-center gap-3 group">
-          <img 
-            src="/logos/TorreAzhariLogo.svg" 
+          <img
+            src="/logos/TorreAzhariLogo.svg"
             alt="Azhari Logo"
+            width={56}
+            height={56}
             className="h-14 w-14 object-contain"
             style={{ filter: 'brightness(0) invert(1)' }}
           />

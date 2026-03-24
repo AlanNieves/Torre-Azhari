@@ -54,6 +54,7 @@ export default function AcabadosSection() {
                 src="/images/gallery/img40.jpg"
                 alt="Acabados de lujo"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>

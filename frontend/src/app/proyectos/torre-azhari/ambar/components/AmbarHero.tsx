@@ -67,6 +67,7 @@ export default function AmbarHero() {
           src="/images/gallery/img117.jpg"
           alt="Departamento Ambar — diseño contemporáneo con acabados de lujo"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />

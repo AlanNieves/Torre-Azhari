@@ -21,9 +21,11 @@ export default function Footer() {
           <div>
             <div className="mb-6">
               <div className="flex items-center gap-3">
-                <img 
-                  src="/logos/TorreAzhariLogo.svg" 
+                <Image
+                  src="/logos/TorreAzhariLogo.svg"
                   alt="Azhari Logo"
+                  width={48}
+                  height={48}
                   className="h-12 w-12 object-contain"
                   style={{ filter: 'brightness(0) invert(1)' }}
                 />

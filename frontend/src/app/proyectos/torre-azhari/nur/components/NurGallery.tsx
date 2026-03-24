@@ -63,7 +63,7 @@ export default function NurGallery() {
                 current === i ? "ring-2 ring-white/70 ring-offset-2 ring-offset-[#1e1e1e]" : "opacity-60 hover:opacity-100"
               }`}
             >
-              <Image src={img.src} alt={img.alt} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+              <Image src={img.src} alt={img.alt} fill sizes="(max-width: 1024px) 100vw, 30vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
               <div className="absolute bottom-3 left-3">
                 <span className="rounded-full bg-black/50 px-2.5 py-1 text-xs font-medium text-white/80 backdrop-blur-sm">{img.tag}</span>
               </div>

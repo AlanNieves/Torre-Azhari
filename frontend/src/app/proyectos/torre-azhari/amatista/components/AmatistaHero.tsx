@@ -67,6 +67,7 @@ export default function AmatistaHero() {
           src="/images/gallery/img114.jpg"
           alt="Departamento Amatista — espacios luminosos con acabados premium"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />

@@ -78,6 +78,7 @@ export default function OnixGallery() {
                 src={img.src}
                 alt={img.alt}
                 fill
+                sizes="(max-width: 1024px) 100vw, 30vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <span className="absolute left-3 top-3 rounded-full bg-black/50 px-2.5 py-1 text-xs font-medium text-white/80 backdrop-blur-sm">

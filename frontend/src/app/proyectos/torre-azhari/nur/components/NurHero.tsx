@@ -67,6 +67,7 @@ export default function NurHero() {
           src="/images/gallery/img120.jpg"
           alt="Departamento Nur — espacios amplios con acabados premium"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />

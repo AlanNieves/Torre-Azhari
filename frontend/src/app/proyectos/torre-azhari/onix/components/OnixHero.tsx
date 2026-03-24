@@ -67,6 +67,7 @@ export default function OnixHero() {
           src="/images/gallery/img114.jpg"
           alt="Departamento Onix — espacios amplios con acabados premium"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />

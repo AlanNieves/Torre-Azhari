@@ -67,6 +67,7 @@ export default function ZenithHero() {
           src="/images/gallery/img114.jpg"
           alt="Penthouse Zenith — terraza panorámica con vistas exclusivas"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />

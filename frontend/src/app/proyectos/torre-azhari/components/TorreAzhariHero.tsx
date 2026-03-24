@@ -49,6 +49,7 @@ export default function TorreAzhariHero() {
             src="/images/gallery/img123.jpg"
             alt="Torre Azhari Exterior"
             fill
+            sizes="100vw"
             className="object-cover"
             priority
           />

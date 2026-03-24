@@ -67,6 +67,7 @@ export default function SatiHero() {
           src="/images/gallery/img117.jpg"
           alt="Departamento Sati — sala de estar con acabados premium"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />

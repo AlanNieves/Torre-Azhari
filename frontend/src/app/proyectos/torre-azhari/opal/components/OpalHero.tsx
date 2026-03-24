@@ -67,6 +67,7 @@ export default function OpalHero() {
           src="/images/gallery/img114.jpg"
           alt="Departamento Opal — vistas y confort en el corazón de la torre"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />

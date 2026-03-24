@@ -6,6 +6,7 @@ import EspaciosSection from "./components/EspaciosSection";
 import EspaciosIdealSection from "./components/EspaciosIdealSection";
 import AcabadosSection from "./components/AcabadosSection";
 import EficienciaSection from "./components/EficienciaSection";
+import TorreAzhariGallery from "./components/TorreAzhariGallery";
 import LeadForm from "@/shared/LeadForm";
 
 export const metadata: Metadata = {
@@ -31,6 +32,7 @@ export default function TorreAzhariPage() {
       <EspaciosIdealSection />
       <AcabadosSection />
       <EficienciaSection />
+      <TorreAzhariGallery />
       <LeadForm />
     </main>
   );

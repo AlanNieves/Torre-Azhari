@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
+    <html lang="es" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning data-scroll-behavior="smooth">
       <body className="min-h-screen bg-[#1e1e1e] text-white antialiased" suppressHydrationWarning>
         <Navbar />
         {children}

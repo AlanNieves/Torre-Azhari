@@ -59,8 +59,14 @@ export default function InteractiveMap({
         const L = await import("leaflet");
         await import("leaflet/dist/leaflet.css");
 
-        /**
-         * Inicialización del mapa
+        /**         * Limpiar cualquier instancia previa del mapa en el contenedor
+         * Esto previene el error "Map container is already initialized"
+         */
+        if (mapRef.current && mapRef.current._leaflet_id) {
+          mapRef.current._leaflet_id = null;
+        }
+
+        /**         * Inicialización del mapa
          * - setView: Centra el mapa en las coordenadas especificadas
          * - zoom: Nivel de acercamiento inicial
          * - zoomControl: false para agregar controles personalizados después
@@ -178,6 +184,10 @@ export default function InteractiveMap({
       if (mapInstanceRef.current) {
         mapInstanceRef.current.remove();
         mapInstanceRef.current = null;
+      }
+      // Limpiar referencias de Leaflet en el contenedor
+      if (mapRef.current && mapRef.current._leaflet_id) {
+        mapRef.current._leaflet_id = null;
       }
     };
   }, [lat, lng, zoom]);

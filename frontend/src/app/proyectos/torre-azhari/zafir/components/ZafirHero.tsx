@@ -71,6 +71,7 @@ export default function ZafirHero() {
           src="/images/gallery/img114.jpg"
           alt="Departamento Zafir — recámara principal con acabados premium"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />

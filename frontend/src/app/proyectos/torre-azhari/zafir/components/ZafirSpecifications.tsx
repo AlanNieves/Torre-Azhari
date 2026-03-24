@@ -6,7 +6,7 @@ import { Maximize2, Sun, DollarSign, BedDouble, Bath, Car } from "lucide-react";
 const specs = [
   { icon: Maximize2, label: "Área de departamento", value: "100.78 m²" },
   { icon: Sun,       label: "Área de terraza",      value: "4.99 m²" },
-  { icon: DollarSign,label: "Costo x m²",           value: "$42,100" },
+  { icon: DollarSign,label: "Costo x m²",           value: "$35,000" },
   { icon: BedDouble, label: "Recámaras",             value: "2" },
   { icon: Bath,      label: "Baños",                 value: "2" },
   { icon: Car,       label: "Cajones de estacionamiento", value: "2" },
@@ -60,7 +60,7 @@ export default function ZafirSpecifications() {
                 className="rounded-xl border border-white/10 bg-white/5 p-6"
               >
                 <p className="font-serif text-3xl font-light text-white lg:text-4xl">
-                  $4,452,917
+                  $3,701,905
                 </p>
                 <p className="mt-2 text-xs font-medium uppercase tracking-widest text-white/50">
                   Precio MXN
