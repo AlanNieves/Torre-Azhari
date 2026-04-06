@@ -2,12 +2,6 @@
 
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
-import dynamic from "next/dynamic";
-
-const InteractiveMap = dynamic(() => import("@/shared/ui/InteractiveMap"), {
-  ssr: false,
-  loading: () => <div className="flex h-96 items-center justify-center bg-gray-800 rounded-lg">Cargando mapa...</div>
-});
 
 const locationPoints = [
   "Universidad Autónoma de Aguascalientes (UAA)",
@@ -56,11 +50,14 @@ export default function UbicacionEstrategica() {
         >
           {/* Map */}
           <div className="relative aspect-square overflow-hidden rounded-2xl lg:aspect-[4/3]">
-            <InteractiveMap
-              lat={21.8639}
-              lng={-102.3517}
-              zoom={14}
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3703.456!2d-102.3517!3d21.8639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429f0a0a0a0a0a1%3A0xa0a0a0a0a0a0a0a0!2sProyecto%20Amara%2C%20Aguascalientes!5e0!3m2!1ses-419!2smx!4v1711900800000!5m2!1ses-419!2smx"
+              width="100%"
               height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
 

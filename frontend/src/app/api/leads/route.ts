@@ -2,16 +2,11 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    console.log("➡️ /api/leads hit");
-
     const body = await req.json();
-    console.log("📦 BODY:", body);
 
     const backendUrl = process.env.BACKEND_LEADS_URL;
-    console.log("🌐 BACKEND_LEADS_URL:", backendUrl);
 
     if (!backendUrl) {
-      console.error("❌ BACKEND_LEADS_URL NO DEFINIDO");
       return NextResponse.json(
         { message: "Backend URL no configurada" },
         { status: 500 }
@@ -24,23 +19,19 @@ export async function POST(req: Request) {
       body: JSON.stringify(body),
     });
 
-    console.log("⬅️ BACKEND STATUS:", res.status);
-
     const text = await res.text();
-    console.log("⬅️ BACKEND RESPONSE RAW:", text);
 
     if (!res.ok) {
       return NextResponse.json(
-        { message: "Backend error", backend: text },
+        { message: "Error procesando solicitud" },
         { status: res.status }
       );
     }
 
     return NextResponse.json({ ok: true }, { status: 200 });
   } catch (err: any) {
-    console.error("🔥 API LEADS ERROR:", err);
     return NextResponse.json(
-      { message: "Internal error", error: String(err) },
+      { message: "Error procesando solicitud" },
       { status: 500 }
     );
   }

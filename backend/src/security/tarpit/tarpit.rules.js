@@ -1,5 +1,5 @@
 function getDelayForThreat(threat) {
-    if(!threat || threat.score) return 0;
+    if(!threat || !threat.score) return 0;
 
     if(threat.score >= 40) return 5000;
     if(threat.score >= 30) return 3000;

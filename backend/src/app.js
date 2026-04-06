@@ -16,12 +16,14 @@ const honeypotMiddleware = require('./security/honeypot/honeypot.middleware');
 
 const app = express();
 
-// 🔍 DEBUG FINAL
-console.log('securityHeaders:', typeof securityHeaders);
-console.log('corsMiddleware:', typeof corsMiddleware);
-console.log('rateLimit:', typeof rateLimit);
-console.log('threatScoreMiddleware:', typeof threatScoreMiddleware);
-console.log('honeypotMiddleware:', typeof honeypotMiddleware);
+// 🔍 DEBUG - Solo en desarrollo
+if (process.env.NODE_ENV !== 'production') {
+  console.log('securityHeaders:', typeof securityHeaders);
+  console.log('corsMiddleware:', typeof corsMiddleware);
+  console.log('rateLimit:', typeof rateLimit);
+  console.log('threatScoreMiddleware:', typeof threatScoreMiddleware);
+  console.log('honeypotMiddleware:', typeof honeypotMiddleware);
+}
 
 app.use(express.json({ limit: '1mb' }));
 

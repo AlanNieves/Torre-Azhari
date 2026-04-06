@@ -1,7 +1,7 @@
 // src/components/forms/LeadForm.tsx
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { createLead } from "@/lib/api";
 import type { CreateLeadPayload } from "@/types/lead";
@@ -37,6 +37,21 @@ function sanitizePhone(v: string) {
   return s.replace(/[^\d+]/g, "").slice(0, 20);
 }
 
+function isValidMexicanPhone(v: string): boolean {
+  const sanitized = sanitizePhone(v);
+  // Debe ser +52 + exactamente 10 dígitos
+  if (!/^\+52\d{10}$/.test(sanitized)) return false;
+  
+  // Validar que no sea patrón de bot (todos zeros, todos unos, etc.)
+  const digits = sanitized.slice(3); // Remover +52
+  if (/^(\d)\1{9}$/.test(digits)) return false; // Todos iguales: 1111111111
+  
+  // Validar que no sea secuencia obvia: 0123456789, 1234567890, etc.
+  if (/^0123456789|1234567890|9876543210|0987654321$/.test(digits)) return false;
+  
+  return true;
+}
+
 type LeadFormProps = {
   isCompact?: boolean;
 };
@@ -45,14 +60,16 @@ export default function LeadForm({ isCompact = false }: LeadFormProps) {
   const [values, setValues] = useState<LeadFormValues>(initialValues);
   const [state, setState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
+  const isSubmittingRef = useRef(false);
 
   const canSubmit = useMemo(() => {
     const nameOk = trim(values.name).length >= 2;
     const emailOk = isEmail(values.email);
-    // Phone should have +52 plus at least 10 digits (total length >= 13)
-    const phoneOk = sanitizePhone(values.phone).length >= 13;
+    const phoneOk = isValidMexicanPhone(values.phone);
     return nameOk && emailOk && phoneOk && state !== "loading";
   }, [values.name, values.email, values.phone, state]);
+
+  const hasError = state === "error";
 
   function onChange<K extends keyof LeadFormValues>(key: K, v: string) {
     setValues((prev) => ({ ...prev, [key]: v }));
@@ -74,8 +91,11 @@ export default function LeadForm({ isCompact = false }: LeadFormProps) {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!canSubmit) return;
-
+    
+    // Prevenir múltiples submits simultáneos
+    if (isSubmittingRef.current || !canSubmit) return;
+    
+    isSubmittingRef.current = true;
     setState("loading");
     setErrorMsg("");
 
@@ -91,51 +111,65 @@ export default function LeadForm({ isCompact = false }: LeadFormProps) {
       await createLead(payload);
       setState("success");
       setValues(initialValues);
-      window.setTimeout(() => setState("idle"), 5000); // Aumentamos el tiempo a 5 segundos
+      window.setTimeout(() => setState("idle"), 5000);
     } catch (err: any) {
       setState("error");
       setErrorMsg(err?.message || "No pudimos enviar tu solicitud. Intenta nuevamente.");
+    } finally {
+      isSubmittingRef.current = false;
     }
   }
 
   const formContent = (
-    <form onSubmit={onSubmit} className="mt-8 grid gap-6">
-          <Field
-            label="NOMBRE"
-            placeholder="Escribe aquí..."
-            value={values.name}
-            onChange={(v) => onChange("name", v)}
-            autoComplete="name"
-            required
-          />
+    <form onSubmit={onSubmit} className="mt-8 grid gap-6" aria-label="Formulario de consulta">
+          <fieldset className="border-0 p-0 m-0" disabled={state === "loading"}>
+            <Field
+              id="lead-name"
+              label="NOMBRE"
+              placeholder="Escribe aquí..."
+              value={values.name}
+              onChange={(v) => onChange("name", v)}
+              autoComplete="name"
+              required
+              aria-invalid={hasError}
+              aria-describedby={hasError ? "form-error-message" : undefined}
+            />
 
-          <Field
-            label="CORREO"
-            placeholder="Escribe aquí..."
-            value={values.email}
-            onChange={(v) => onChange("email", v)}
-            autoComplete="email"
-            inputMode="email"
-            required
-          />
+            <Field
+              id="lead-email"
+              label="CORREO"
+              placeholder="Escribe aquí..."
+              value={values.email}
+              onChange={(v) => onChange("email", v)}
+              autoComplete="email"
+              inputMode="email"
+              required
+              aria-invalid={hasError}
+              aria-describedby={hasError ? "form-error-message" : undefined}
+            />
 
-          <Field
-            label="TELÉFONO"
-            placeholder="+52"
-            value={values.phone}
-            onChange={onPhoneChange}
-            autoComplete="tel"
-            inputMode="tel"
-            required
-          />
+            <Field
+              id="lead-phone"
+              label="TELÉFONO"
+              placeholder="+52"
+              value={values.phone}
+              onChange={onPhoneChange}
+              autoComplete="tel"
+              inputMode="tel"
+              required
+              aria-invalid={hasError}
+              aria-describedby={hasError ? "form-error-message" : undefined}
+            />
 
-          <TextArea
-            label="MENSAJE"
-            placeholder="Escribe aquí..."
-            value={values.message}
-            onChange={(v) => onChange("message", v)}
-            autoComplete="off"
-          />
+            <TextArea
+              id="lead-message"
+              label="MENSAJE"
+              placeholder="Escribe aquí..."
+              value={values.message}
+              onChange={(v) => onChange("message", v)}
+              autoComplete="off"
+            />
+          </fieldset>
 
           <div className="mt-2 flex items-center gap-3">
             <motion.button
@@ -157,6 +191,7 @@ export default function LeadForm({ isCompact = false }: LeadFormProps) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -4 }}
                     className="inline-flex items-center gap-2"
+                    aria-label="Enviando formulario"
                   >
                     <Spinner />
                     Enviando…
@@ -202,6 +237,8 @@ export default function LeadForm({ isCompact = false }: LeadFormProps) {
           <AnimatePresence>
             {state === "error" && (
               <motion.p
+                id="form-error-message"
+                role="alert"
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
@@ -281,6 +318,7 @@ export default function LeadForm({ isCompact = false }: LeadFormProps) {
 }
 
 function Field(props: {
+  id: string;
   label: string;
   placeholder?: string;
   value: string;
@@ -288,17 +326,23 @@ function Field(props: {
   required?: boolean;
   autoComplete?: string;
   inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"];
+  "aria-invalid"?: boolean;
+  "aria-describedby"?: string;
 }) {
   return (
-    <label className="grid gap-3">
+    <label htmlFor={props.id} className="grid gap-3">
       <span className="text-xs font-normal tracking-wide text-white/90">
-        {props.label} {props.required && <span className="text-white">*</span>}
+        {props.label} {props.required && <span className="text-white" aria-label="requerido">*</span>}
       </span>
       <motion.input
+        id={props.id}
         value={props.value}
         onChange={(e) => props.onChange(e.target.value)}
         placeholder={props.placeholder}
         required={props.required}
+        aria-required={props.required}
+        aria-invalid={props["aria-invalid"]}
+        aria-describedby={props["aria-describedby"]}
         autoComplete={props.autoComplete}
         inputMode={props.inputMode}
         whileFocus={{ scale: 1.002 }}
@@ -310,6 +354,7 @@ function Field(props: {
 }
 
 function TextArea(props: {
+  id: string;
   label: string;
   placeholder?: string;
   value: string;
@@ -317,11 +362,12 @@ function TextArea(props: {
   autoComplete?: string;
 }) {
   return (
-    <label className="grid gap-3">
+    <label htmlFor={props.id} className="grid gap-3">
       <span className="text-xs font-normal tracking-wide text-white/90">
         {props.label}
       </span>
       <motion.textarea
+        id={props.id}
         value={props.value}
         onChange={(e) => props.onChange(e.target.value)}
         placeholder={props.placeholder}
