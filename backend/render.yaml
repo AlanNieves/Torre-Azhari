@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: azhari-backend
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        fromDatabase:
+          name: azhari-db
+          property: connectionString
+      - key: PORT
+        value: 10000
+      - key: SEND_EMAIL
+        value: true
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: 587
+      - key: SMTP_SECURE
+        value: false
+databases:
+  - name: azhari-db
+    databaseName: azhari_production
+    plan: free

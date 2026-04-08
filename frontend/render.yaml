@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: azhari-frontend
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_URL
+        value: https://azhari-backend.onrender.com

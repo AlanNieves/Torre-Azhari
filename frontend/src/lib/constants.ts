@@ -18,8 +18,11 @@ export const NAV = [
   { label: "Contacto", href: "#contacto" },
 ] as const;
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
 export const API = {
-  // si quieres apuntar directo al backend externo, pon NEXT_PUBLIC_LEADS_ENDPOINT en .env.local
-  leadsEndpoint: process.env.NEXT_PUBLIC_LEADS_ENDPOINT || "/api/leads",
+  // En producción (Render), esta URL será https://azhari-backend.onrender.com
+  // En desarrollo, será http://localhost:5000
+  leadsEndpoint: `${API_BASE_URL}/api/leads`,
 } as const;
 
